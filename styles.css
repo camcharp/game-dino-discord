@@ -23,7 +23,8 @@ audio {
 
 /* START SCREEN */
 
-#start-screen {
+#start-screen,
+#end-screen {
 	background-color: rgb(0, 0, 0, 0.7);
 	text-align: center;
 	color: white;
@@ -54,12 +55,12 @@ audio {
 	);
 	color: black;
 	border-bottom: 2px solid black;
-	border-right: 2px solid black;;
+	border-right: 2px solid black;
 	font-family: 'VT323', monospace;
 	margin: 10px;
 	width: 200px;
 	height: 40px;
-	font-size: 2em;
+	font-size: 1.7em;
 }
 
 .button-nav:hover {
@@ -87,10 +88,31 @@ h1 {
 	margin: 60px;
 }
 
-#countdown, #ready, #seconds {
+.dino-color {
+	width: 100px;
+}
+
+.choose {
+	font-size: 1.5em;
 	color: white;
-	font-size: 3.5em;
+	text-align: center;
+}
+
+.dino-display {
+	margin: 0 70px;
+}
+
+#ready,
+#seconds {
+	color: white;
+	font-size: 2.5em;
 	margin: 30px;
+}
+
+#countdown,
+#countdown-text {
+	color: white;
+	font-size: 1.5em;
 }
 
 #player-one-text {
@@ -179,7 +201,7 @@ img {
 }
 
 .button {
-	background-image: linear-gradient(to right, rgb(126, 166, 63),rgb(236, 171, 39));
+	background-image: linear-gradient(to right, rgb(126, 166, 63), rgb(236, 171, 39));
 	color: black;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
@@ -189,7 +211,7 @@ img {
 	font-size: 2em;
 }
 
-.button:active {
+.button:hover {
 	border: 1px solid black;
 }
 
@@ -197,4 +219,72 @@ button:focus {
 	outline: 0 !important;
 }
 
+/* END SCREEN */
+#end-screen {
+	font-size: 2em;
+}
 
+.button-end {
+	background-image: linear-gradient(
+		to right,
+		rgb(201, 56, 71),
+		rgb(236, 171, 39),
+		rgb(126, 166, 63),
+		rgb(60, 146, 191)
+	);
+	color: black;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+	font-family: 'VT323', monospace;
+	margin: 10px;
+	width: 200px;
+	height: 40px;
+	font-size: 1em;
+}
+
+.button-end:hover {
+	border: 1px solid black;
+}
+
+/* ITEMS */
+.meteorite {
+	background-image: url(./meteorite.gif);
+}
+
+.coin {
+	background-image: url(./coin.gif);
+}
+
+.lightning {
+	background-image: url(./lightning.gif);
+}
+
+/* A PERSONNALISER 
+
+.player-one
+	background-color: rgb(236,171,39);
+	background-color: rgb(126,166,63);
+	background-color: rgb(201,56,71);
+	background-color: rgb(60,146,191);
+
+.player-two
+	background-color: rgb(236,171,39);
+	background-color: rgb(126,166,63);
+	background-color: rgb(201,56,71);
+	background-color: rgb(60,146,191);
+
+.active-player-one
+	background-image: url(./yellow_dino_small_left.gif);
+	background-image: url(./green_dino_small_left.gif);
+	background-image: url(./red_dino_small_left.gif);
+	background-image: url(./blue_dino_small_left.gif);
+
+.active-player-two
+	background-image: url(./yellow_dino_small_left.gif);
+	background-image: url(./green_dino_small_left.gif);
+	background-image: url(./red_dino_small_left.gif);
+	background-image: url(./blue_dino_small_left.gif);
+
+.button
+	background-image: linear-gradient(to right, rgb(126, 166, 63),rgb(236, 171, 39));
+*/

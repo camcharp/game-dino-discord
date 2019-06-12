@@ -14,14 +14,14 @@
     <div id="start-screen">
         <h1 id="title">Dino Discord</h1>
         <p id="intro">In a world full of danger, being a cute little dinosaur is not always easy.Your mission? Fight for your territory! But beware of the meteorites.</p>
-        <img src="./red_dino.gif" alt="red dino">
-        <img src="./yellow_dino.gif" alt="yellow dino">
-        <img src="./green_dino.gif" alt="green dino">
-        <img src="./blue_dino.gif" alt="blue dino">
+        <img src="./red_dino_running.gif" alt="red dino">
+        <img src="./yellow_dino_running.gif" alt="yellow dino">
+        <img src="./green_dino_running.gif" alt="green dino">
+        <img src="./blue_dino_running.gif" alt="blue dino">
         <nav id="navigation">
             <button class="button-nav" id="play">PLAY</button>
             <button class="button-nav" id="instructions">INSTRUCTIONS</button>
-            <button class="button-nav" id="credits">CREDITS</button>
+            <!-- <button class="button-nav" id="credits">CREDITS</button> -->
         </nav>
     </div>
 
@@ -31,10 +31,17 @@
         <div class="header-container">
             <p id="seconds" class="hidden">3</p>
             <p id="ready">Ready?</p>
-            <p  class="hidden"><span id="countdown">30</span> seconds left</p>
+            <p  class="hidden" id="countdown-text"><span id="countdown">31</span> seconds left</p>
             <button class="button" id="start">START</button>
         </div>
         <div class="container">
+            <div class="dino-display">
+                    <p class="choose">Choose your dino</p>
+                    <img src="./red_dino_short.gif" class="dino-color" alt="red-dino">
+                    <img src="./yellow_dino_short.gif" class="dino-color" alt="yellow">
+                    <img src="./green_dino_short.gif" class="dino-color" alt="green-dino">
+                    <img src="./blue_dino_short.gif" class="dino-color" alt"blue-dino">
+            </div>
 
             <div class="player-display">
                 <h2 id="player-one-text">Player 1</h2>
@@ -47,20 +54,28 @@
 
             </div>
 
+            <div class="dino-display">
+                    <h2 id="player-two-text">Player 2</h2>
+                    <p class="points"><span id="player-two-points">0</span> points</p>
+                    <img src="./yellow_dino_short_left.gif" alt"dino">
+            </div>
+
             <div class="player-display">
-                <h2 id="player-two-text">Player 2</h2>
-                <p class="points"><span id="player-two-points">0</span> points</p>
-                <img src="./yellow_dino_short_left.gif" alt"dino">
+                <p class="choose">Choose your dino</p>
+                <img src="./red_dino_short_left.gif" class="dino-color" alt="red-dino">
+                <img src="./yellow_dino_short_left.gif" class="dino-color" alt="yellow">
+                <img src="./green_dino_short_left.gif" class="dino-color" alt="green-dino">
+                <img src="./blue_dino_short_left.gif" class="dino-color" alt"blue-dino">
             </div>
 
         </div>
-
-    </div>  
+</div>  
     
     <!----- END SCREEN ----->
-
-    <div id="end-screen" id="hidden">
-        <p id="end-text" class="hidden"><span id="winner"></span>, you win! There's no dino more ferocious than you.</p>
+    <div id="end-screen" class="hidden">
+        <p id="end-text" class="hidden"></p>
+        <div id="dino-winner" class="hidden"> </div>
+        <button id="play-again" class="button-end hidden">PLAY AGAIN</button>
     </div>
 
 
