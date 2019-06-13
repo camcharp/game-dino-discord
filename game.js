@@ -16,22 +16,12 @@ var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`)
 var playerOneColor = null;
 var playerTwoColor = null;
 
-var playerOneColorCell = null;
-var playerTwoColorCell = null;
-
-/* var redOneColor = document.getElementById('player-one-red');
-var yellowOneColor = document.getElementById('player-one-yellow');
-var greenOneColor = document.getElementById('player-one-green');
-var blueOneColor = document.getElementById('player-one-blue');
-
-var redTwoColor = document.getElementById('player-two-red');
-var yellowTwoColor = document.getElementById('player-two-yellow');
-var greenTwoColor = document.getElementById('player-two-green');
-var blueTwoColor = document.getElementById('player-two-blue'); */
+/* var playerOneColorCell = null;
+var playerTwoColorCell = null; */
 
 startButton.onclick = function startGame() {
 	createMeterorites();
-	addCoins();
+	// addCoins();
 
 	startButton.classList.add('hidden');
 	ready.classList.add('hidden');
@@ -43,6 +33,9 @@ startButton.onclick = function startGame() {
 		var seconds = document.getElementById('seconds');
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
+			var audio = new Audio('./mix.mp3');
+			audio.play();
+
 			seconds.innerHTML = 'Go go go!';
 			setTimeout(function() {
 				seconds.innerHTML = '';
@@ -551,18 +544,12 @@ function createMeterorites() {
 			if (randomCell3 != currentPositionP1 && randomCell3 != currentPositionP2) {
 				randomCell3.classList.add('meteorite', 'taken');
 			}
-		}, 4000);
+		}, 1000);
 		clearInterval(window);
-	}, 2000);
+	}, 4000);
 }
 
-function addCoins() {
-	var randomCell1 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	var randomCell2 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-
-	var pointsP1 = document.getElementById('player-one-points');
-	var pointsP2 = document.getElementById('player-two-points');
-
+/* function addCoins() {
 	setTimeout(function() {
 		if (!randomCell1.classList.contains('taken')) {
 			randomCell1.classList.add('coin', 'taken');
@@ -570,19 +557,29 @@ function addCoins() {
 		if (!randomCell1.classList.contains('taken')) {
 			randomCell2.classList.add('coin', 'taken');
 		}
-	}, getRandomInt(10000, 12000));
+	}, getRandomInt(5000, 10000));
+
+	var randomCell1 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
+	console.log(randomCell1);
+	console.log(currentPositionP1);
+	var randomCell2 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
+	console.log(randomCell2);
+	console.log(currentPositionP2);
 
 	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
+	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwoColor.y}`);
 
 	if (currentPositionP1 === randomCell1) {
+		var currentPositionP1 = document.getElementById('player-one-points');
 		randomCell1.classList.remove('coin', 'taken');
-		pointsP1 += 5;
+		currentPositionP1 += 5;
 	}
 	if (currentPositionP2 === randomCell1) {
+		var currentPositionP2 = document.getElementById('player-two-points');
 		randomCell1.classList.remove('coin', 'taken');
-		pointsP2 += 5;
+		currentPositionP2 += 5;
 	}
-}
+} */
 
 function determineWinner() {
 	player1 = 'Player 1';
@@ -614,18 +611,47 @@ function determineWinner() {
 	winnerImage.classList.remove('hidden');
 
 	if (winner === player1) {
-		winnerImage.innerHTML = "<img src='./green_dino_short.gif' alt='dino-winner'>";
-		endText.innerHTML = "Player 1, you win! There's no dino more ferocious than you.";
+		if (playerOneColor === 'red') {
+			winnerImage.innerHTML = "<img src='./red_dino_short.gif' alt='dino-winner'>";
+		} else if (playerOneColor === 'yellow') {
+			winnerImage.innerHTML = "<img src='./yellow_dino_short.gif' alt='dino-winner'>";
+		} else if (playerOneColor === 'green') {
+			winnerImage.innerHTML = "<img src='./green_dino_short.gif' alt='dino-winner'>";
+		} else if (playerOneColor === 'blue') {
+			winnerImage.innerHTML = "<img src='./blue_dino_short.gif' alt='dino-winner'>";
+		}
+		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
 	} else if (winner === player2) {
-		winnerImage.innerHTML = "<img src='./yellow_dino_short.gif' alt='dino-winner'>";
-		endText.innerHTML = "Player 2, you win! There's no dino more ferocious than you.";
+		if (playerTwoColor === 'red') {
+			winnerImage.innerHTML = "<img src='./red_dino_short.gif' alt='dino-winner'>";
+		} else if (playerTwoColor === 'yellow') {
+			winnerImage.innerHTML = "<img src='./yellow_dino_short.gif' alt='dino-winner'>";
+		} else if (playerTwoColor === 'green') {
+			winnerImage.innerHTML = "<img src='./green_dino_short.gif' alt='dino-winner'>";
+		} else if (playerTwoColor === 'blue') {
+			winnerImage.innerHTML = "<img src='./blue_dino_short.gif' alt='dino-winner'>";
+		}
+		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
 	} else if (winner === equality) {
 		winnerImage.innerHTML =
 			"<img src='./red_dino_running.gif' alt='red dino'><img src='./yellow_dino_running.gif' alt='yellow dino'><img src='./green_dino_running.gif' alt='green dino'><img src='./blue_dino_running.gif' alt='blue dino'>";
 		endText.innerHTML = 'Dinosaurs can be diplomats, too. You have found a way to share your territory peacefully.';
 	}
-
 	buttonPlayAgain.onclick = function restart() {
 		location.reload();
 	};
 }
+
+// DISPLAY INSTRUCTIONS
+var buttonInstructions = document.getElementById('instruction');
+buttonInstructions.onclick = function displayInstruction() {
+	var instructions = document.getElementById('instructions');
+	instructions.classList.remove('hidden');
+
+	startScreen.classList.add('hidden');
+
+	var buttonMenu = document.getElementById("menu");
+	buttonMenu.onclick = function restart() {
+		location.reload();
+	};
+};

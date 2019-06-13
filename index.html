@@ -20,9 +20,10 @@
         <img src="./blue_dino_running.gif" alt="blue dino">
         <nav id="navigation">
             <button class="button-nav" id="play">PLAY</button>
-            <button class="button-nav" id="instructions">INSTRUCTIONS</button>  
+            <button class="button-nav" id="instruction">INSTRUCTIONS</button>  
         </nav>
     </div>
+    <!----- START SCREEN ----->
 
     <!----- BOARD GAME ----->
     <div id="main" class="hidden">
@@ -35,7 +36,7 @@
         </div>
         <div class="container">
             <div id="dino-display-one">
-                    <p class="choose">Choose your dino</p>
+                    <p class="choose">Click to choose your dino</p>
                     <img src="./red_dino_short.gif" class="dino-color red" id="red-one" alt="red-dino">
                     <img src="./yellow_dino_short.gif" class="dino-color yellow" id='yellow-one' alt="yellow">
                     <img src="./green_dino_short.gif" class="dino-color green" id='green-one' alt="green-dino">
@@ -60,7 +61,7 @@
             </div>
 
             <div id="dino-display-two">
-                <p class="choose">Choose your dino</p>
+                <p class="choose">Click to choose your dino</p>
                 <img src="./red_dino_short_left.gif" class="dino-color red" id='red-two' alt="red-dino">
                 <img src="./yellow_dino_short_left.gif" class="dino-color yellow" id='yellow-two' alt="yellow">
                 <img src="./green_dino_short_left.gif" class="dino-color green" id='green-two' alt="green-dino">
@@ -69,18 +70,28 @@
 
         </div>
 </div>  
-    
+    <!----- BOARD GAME ----->
+
     <!----- END SCREEN ----->
     <div id="end-screen" class="hidden">
         <p id="end-text" class="hidden"></p>
         <div id="dino-winner" class="hidden"> </div>
         <button id="play-again" class="button-end hidden">PLAY AGAIN</button>
     </div>
-
+    <!----- END SCREEN ----->
 
     <!----- INSTRUCTIONS ----->
+    <div id="instructions" class="hidden">
+        <p>You have to own more territory than your opponent. One cell with your color = one point for you. You can totally steal the cells of the other dino!</p>
+        <div id="commands">
+            <p>Player One, press Z to go up, S to go down, Q to go left and D to go right.</p>
+            <p>Player Two, press Up to go up, Down to go down, Left to go left and Right to go right.</p>
+        </div>
+        
+        <button id="menu">MENU</button>
+    </div>
+    <!----- INSTRUCTIONS ----->
 
-    
 </body>
 <script src="./board.js"></script>
 <script src="./game.js" ></script>
