@@ -21,6 +21,10 @@ audio {
 	display: none;
 }
 
+.invisible {
+	visibility: hidden;
+}
+
 /* START SCREEN */
 
 #start-screen,
@@ -115,20 +119,11 @@ h1 {
 	font-size: 1.5em;
 }
 
-#player-one-text {
-	text-align: center;
-	font-size: 3em;
-	background: -webkit-linear-gradient(#eee, rgb(126, 166, 63));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
+#player-one-text,
 #player-two-text {
 	text-align: center;
+	color: white;
 	font-size: 3em;
-	background: -webkit-linear-gradient(#eee, rgb(236, 171, 39));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 
 img {
@@ -156,6 +151,7 @@ img {
 	display: flex;
 	flex-direction: column;
 	width: 20%;
+	margin: 0 70px;
 	justify-content: flex-start;
 	align-items: center;
 }
@@ -167,7 +163,8 @@ img {
 	justify-content: center;
 }
 
-.points {
+#player-one-text-points,
+#player-two-text-points {
 	font-size: 2em;
 	color: white;
 }
@@ -201,7 +198,13 @@ img {
 }
 
 .button {
-	background-image: linear-gradient(to right, rgb(126, 166, 63), rgb(236, 171, 39));
+	background-image: linear-gradient(
+		to right,
+		rgb(201, 56, 71),
+		rgb(236, 171, 39),
+		rgb(126, 166, 63),
+		rgb(60, 146, 191)
+	);
 	color: black;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
@@ -259,32 +262,70 @@ button:focus {
 	background-image: url(./lightning.gif);
 }
 
-/* A PERSONNALISER 
+/* COULEURS */
 
-.player-one
-	background-color: rgb(236,171,39);
-	background-color: rgb(126,166,63);
-	background-color: rgb(201,56,71);
-	background-color: rgb(60,146,191);
+.player-one-red {
+	background-color: rgb(201, 56, 71);
+}
 
-.player-two
-	background-color: rgb(236,171,39);
-	background-color: rgb(126,166,63);
-	background-color: rgb(201,56,71);
-	background-color: rgb(60,146,191);
+.player-one-yellow {
+	background-color: rgb(236, 171, 39);
+}
 
-.active-player-one
-	background-image: url(./yellow_dino_small_left.gif);
-	background-image: url(./green_dino_small_left.gif);
+.player-one-green {
+	background-color: rgb(126, 166, 63);
+}
+
+.player-one-blue {
+	background-color: rgb(60, 146, 191);
+}
+
+.player-two-red {
+	background-color: rgb(201, 56, 71);
+}
+
+.player-two-yellow {
+	background-color: rgb(236, 171, 39);
+}
+
+.player-two-green {
+	background-color: rgb(126, 166, 63);
+}
+
+.player-two-blue {
+	background-color: rgb(60, 146, 191);
+}
+
+.active-player-one-red {
+	background-image: url(./red_dino_small.gif);
+}
+
+.active-player-one-yellow {
+	background-image: url(./yellow_dino_small.gif);
+}
+
+.active-player-one-green {
+	background-image: url(./green_dino_small.gif);
+}
+
+.active-player-one-blue {
+	background-image: url(./blue_dino_small.gif);
+}
+
+.active-player-two-red {
 	background-image: url(./red_dino_small_left.gif);
-	background-image: url(./blue_dino_small_left.gif);
+}
 
-.active-player-two
+.active-player-two-yellow {
 	background-image: url(./yellow_dino_small_left.gif);
-	background-image: url(./green_dino_small_left.gif);
-	background-image: url(./red_dino_small_left.gif);
-	background-image: url(./blue_dino_small_left.gif);
+}
 
-.button
-	background-image: linear-gradient(to right, rgb(126, 166, 63),rgb(236, 171, 39));
-*/
+.active-player-two-green {
+	background-image: url(./green_dino_small_left.gif);
+}
+
+.active-player-two-blue {
+	background-image: url(./blue_dino_small_left.gif);
+}
+
+

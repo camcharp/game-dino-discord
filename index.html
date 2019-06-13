@@ -13,15 +13,14 @@
     <!----- START SCREEN ----->
     <div id="start-screen">
         <h1 id="title">Dino Discord</h1>
-        <p id="intro">In a world full of danger, being a cute little dinosaur is not always easy.Your mission? Fight for your territory! But beware of the meteorites.</p>
+        <p id="intro">In a world full of danger, being a cute little dinosaur is not always easy.Your mission? Conquer your territory! But don't get trapped by the meteorites.</p>
         <img src="./red_dino_running.gif" alt="red dino">
         <img src="./yellow_dino_running.gif" alt="yellow dino">
         <img src="./green_dino_running.gif" alt="green dino">
         <img src="./blue_dino_running.gif" alt="blue dino">
         <nav id="navigation">
             <button class="button-nav" id="play">PLAY</button>
-            <button class="button-nav" id="instructions">INSTRUCTIONS</button>
-            <!-- <button class="button-nav" id="credits">CREDITS</button> -->
+            <button class="button-nav" id="instructions">INSTRUCTIONS</button>  
         </nav>
     </div>
 
@@ -30,23 +29,23 @@
 
         <div class="header-container">
             <p id="seconds" class="hidden">3</p>
-            <p id="ready">Ready?</p>
+            <p id="ready" class="hidden">Ready?</p>
             <p  class="hidden" id="countdown-text"><span id="countdown">31</span> seconds left</p>
-            <button class="button" id="start">START</button>
+            <button class="button hidden" id="start">START</button>
         </div>
         <div class="container">
-            <div class="dino-display">
+            <div id="dino-display-one">
                     <p class="choose">Choose your dino</p>
-                    <img src="./red_dino_short.gif" class="dino-color" alt="red-dino">
-                    <img src="./yellow_dino_short.gif" class="dino-color" alt="yellow">
-                    <img src="./green_dino_short.gif" class="dino-color" alt="green-dino">
-                    <img src="./blue_dino_short.gif" class="dino-color" alt"blue-dino">
+                    <img src="./red_dino_short.gif" class="dino-color red" id="red-one" alt="red-dino">
+                    <img src="./yellow_dino_short.gif" class="dino-color yellow" id='yellow-one' alt="yellow">
+                    <img src="./green_dino_short.gif" class="dino-color green" id='green-one' alt="green-dino">
+                    <img src="./blue_dino_short.gif" class="dino-color blue" id='blue-one' alt="blue-dino">
             </div>
 
-            <div class="player-display">
-                <h2 id="player-one-text">Player 1</h2>
-                <p class="points"><span id="player-one-points">0</span> points</p>
-                <img src="./green_dino_short.gif" alt"dino">
+            <div class="player-display hidden">
+                <h2 id="player-one-text" class="hidden">Player 1</h2>
+                <p id="player-one-text-points" class="hidden"><span id="player-one-points">0</span> points</p>
+                <div id="dino-one-image" class="hidden"> </div>
             </div>
             
             <div id="game-board">
@@ -54,18 +53,18 @@
 
             </div>
 
-            <div class="dino-display">
-                    <h2 id="player-two-text">Player 2</h2>
-                    <p class="points"><span id="player-two-points">0</span> points</p>
-                    <img src="./yellow_dino_short_left.gif" alt"dino">
+            <div class="player-display hidden">
+                    <h2 id="player-two-text" class="hidden">Player 2</h2>
+                    <p id="player-two-text-points" class="hidden"><span id="player-two-points">0</span> points</p>
+                    <div id="dino-two-image" class="hidden"> </div>
             </div>
 
-            <div class="player-display">
+            <div id="dino-display-two">
                 <p class="choose">Choose your dino</p>
-                <img src="./red_dino_short_left.gif" class="dino-color" alt="red-dino">
-                <img src="./yellow_dino_short_left.gif" class="dino-color" alt="yellow">
-                <img src="./green_dino_short_left.gif" class="dino-color" alt="green-dino">
-                <img src="./blue_dino_short_left.gif" class="dino-color" alt"blue-dino">
+                <img src="./red_dino_short_left.gif" class="dino-color red" id='red-two' alt="red-dino">
+                <img src="./yellow_dino_short_left.gif" class="dino-color yellow" id='yellow-two' alt="yellow">
+                <img src="./green_dino_short_left.gif" class="dino-color green" id='green-two' alt="green-dino">
+                <img src="./blue_dino_short_left.gif" class="dino-color blue" id='blue-two' alt"blue-dino">
             </div>
 
         </div>
@@ -80,8 +79,6 @@
 
 
     <!----- INSTRUCTIONS ----->
-
-    <!----- CREDITS ----->
 
     
 </body>
