@@ -303,6 +303,11 @@ button:focus {
 	cursor: pointer;
 }
 
+#credits {
+	color: darkgray;
+	font-size: 0.5em;
+}
+
 /* COULEURS */
 
 .player-one-red {
