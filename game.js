@@ -17,9 +17,6 @@ var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`)
 var playerOneColor = null;
 var playerTwoColor = null;
 
-/* var playerOneColorCell = null;
-var playerTwoColorCell = null; */
-
 startButton.onclick = function startGame() {
 	createMeterorites();
 
@@ -55,7 +52,7 @@ startButton.onclick = function startGame() {
 				clearInterval(y);
 				setTimeout(function() {
 					determineWinner();
-				}, 3000);
+				}, 4300);
 			}
 		}, 1000);
 
@@ -546,7 +543,7 @@ function createMeterorites() {
 			}
 		}, 5000);
 		clearInterval(window);
-	}, 3000);
+	}, 4000);
 }
 
 function determineWinner() {

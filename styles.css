@@ -346,6 +346,10 @@ button:focus {
 	background-image: url(./red_dino_small.gif);
 }
 
+.active-player-one-red-left {
+	background-image: url(./red_dino_small_left.gif);
+}
+
 .active-player-one-yellow {
 	background-image: url(./yellow_dino_small.gif);
 }
