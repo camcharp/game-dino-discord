@@ -1,3 +1,4 @@
+
 // créer le board
 init(playerOne, playerTwo);
 
@@ -21,7 +22,6 @@ var playerTwoColorCell = null; */
 
 startButton.onclick = function startGame() {
 	createMeterorites();
-	// addCoins();
 
 	startButton.classList.add('hidden');
 	ready.classList.add('hidden');
@@ -419,16 +419,16 @@ function color() {
 	}
 
 	// SI P1 EST BLUE
-	if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'blue') {
+	if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'blue') {
+		currentPositionP1.classList.replace('player-two-red', 'player-one-blue');
+		pointsP1 += 1;
+		pointsP2 -= 1;
+	} else if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'blue') {
 		currentPositionP1.classList.replace('player-two-yellow', 'player-one-blue');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'blue') {
 		currentPositionP1.classList.replace('player-two-green', 'player-one-blue');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'blue') {
-		currentPositionP1.classList.replace('player-two-red', 'player-one-blue');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	}
@@ -484,7 +484,7 @@ function color() {
 		currentPositionP2.classList.replace('player-one-yellow', 'player-two-green');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOneColor === 'green') {
+	} else if (currentPositionP2.classList.contains('player-one-blue') && playerTwoColor === 'green') {
 		currentPositionP2.classList.replace('player-one-blue', 'player-two-green');
 		pointsP2 += 1;
 		pointsP1 -= 1;
@@ -544,42 +544,10 @@ function createMeterorites() {
 			if (randomCell3 != currentPositionP1 && randomCell3 != currentPositionP2) {
 				randomCell3.classList.add('meteorite', 'taken');
 			}
-		}, 1000);
+		}, 5000);
 		clearInterval(window);
-	}, 4000);
+	}, 3000);
 }
-
-/* function addCoins() {
-	setTimeout(function() {
-		if (!randomCell1.classList.contains('taken')) {
-			randomCell1.classList.add('coin', 'taken');
-		}
-		if (!randomCell1.classList.contains('taken')) {
-			randomCell2.classList.add('coin', 'taken');
-		}
-	}, getRandomInt(5000, 10000));
-
-	var randomCell1 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	console.log(randomCell1);
-	console.log(currentPositionP1);
-	var randomCell2 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	console.log(randomCell2);
-	console.log(currentPositionP2);
-
-	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
-	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwoColor.y}`);
-
-	if (currentPositionP1 === randomCell1) {
-		var currentPositionP1 = document.getElementById('player-one-points');
-		randomCell1.classList.remove('coin', 'taken');
-		currentPositionP1 += 5;
-	}
-	if (currentPositionP2 === randomCell1) {
-		var currentPositionP2 = document.getElementById('player-two-points');
-		randomCell1.classList.remove('coin', 'taken');
-		currentPositionP2 += 5;
-	}
-} */
 
 function determineWinner() {
 	player1 = 'Player 1';
@@ -594,7 +562,6 @@ function determineWinner() {
 	if (pointsP1.innerHTML > pointsP2.innerHTML) winner = player1;
 	if (pointsP1.innerHTML < pointsP2.innerHTML) winner = player2;
 	if (pointsP1.innerHTML === pointsP2.innerHTML) winner = equality;
-	console.log(winner);
 	winnerImage = document.getElementById('dino-winner');
 
 	// PAGES A CACHER/AFFICHER
