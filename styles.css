@@ -5,6 +5,10 @@ blue: rgb(60,146,191)*/
 
 /* GENERAL */
 
+body.noScroll {
+	overflow: hidden;
+}
+
 body {
 	font-family: 'VT323', monospace;
 	background-image: url(./rocks.jpg);
@@ -344,10 +348,6 @@ button:focus {
 
 .active-player-one-red {
 	background-image: url(./red_dino_small.gif);
-}
-
-.active-player-one-red-left {
-	background-image: url(./red_dino_small_left.gif);
 }
 
 .active-player-one-yellow {

@@ -52,7 +52,7 @@ startButton.onclick = function startGame() {
 				clearInterval(y);
 				setTimeout(function() {
 					determineWinner();
-				}, 4300);
+				}, 4000);
 			}
 		}, 1000);
 
