@@ -2,15 +2,6 @@
 // créer le board
 init(playerOne, playerTwo);
 
-const startButton = document.getElementById('start');
-const countdown = document.getElementById('countdown');
-const ready = document.getElementById('ready');
-const seconds = document.getElementById('seconds');
-const startScreen = document.getElementById('start-screen');
-const main = document.getElementById('main');
-const endScreen = document.getElementById('end-screen');
-const countdownText = document.getElementById('countdown-text');
-
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
@@ -607,14 +598,9 @@ function determineWinner() {
 }
 
 // DISPLAY INSTRUCTIONS
-var buttonInstructions = document.getElementById('instruction');
 buttonInstructions.onclick = function displayInstruction() {
-	var instructions = document.getElementById('instructions');
 	instructions.classList.remove('hidden');
-
 	startScreen.classList.add('hidden');
-
-	var buttonMenu = document.getElementById("menu");
 	buttonMenu.onclick = function restart() {
 		location.reload();
 	};
