@@ -22,7 +22,7 @@ startButton.onclick = function startGame() {
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
 			// var audio = new Audio('./mix.mp3');
-			audio.play();
+			// audio.play();
 
 			seconds.innerHTML = 'Go go go!';
 			setTimeout(function() {
