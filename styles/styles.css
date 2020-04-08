@@ -11,7 +11,7 @@ body.noScroll {
 
 body {
 	font-family: 'VT323', monospace;
-	background-image: url(./rocks.jpg);
+	background-image: url(../images/rocks.jpg);
 	background-repeat: round;
 	width: 75%;
 	margin: 0 auto;
@@ -39,7 +39,7 @@ audio {
 	margin: 0px;
 	padding: 50px;
 	width: auto;
-	height: 600px;
+	height: 100vh;
 }
 
 #intro {
@@ -51,6 +51,7 @@ audio {
 	align-items: center;
 	flex-direction: column;
 	position: relative;
+	top: 10vh;
 }
 
 .button-nav {
@@ -86,13 +87,13 @@ h1 {
 	text-align: center;
 	font-size: 3em;
 	margin: 20px;
-	background: -webkit-linear-gradient(#eee, red);
+	background: linear-gradient(to top,rgb(201, 56, 71),rgb(236, 171, 39),rgb(126, 166, 63),rgb(60, 146, 191));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 #main {
-	background-image: url(./rocks.jpg);
+	background-image: url(../images/rocks.jpg);
 	background-repeat: round;
 	margin: 60px;
 }
@@ -192,7 +193,7 @@ img {
 }
 
 .active-player-one {
-	background-image: url(./green_dino_small.gif);
+	background-image: url(../images/green_dino_small.gif);
 }
 
 /* .active-player-one-left {
@@ -200,7 +201,7 @@ img {
 } */
 
 .active-player-two {
-	background-image: url(./yellow_dino_small_left.gif);
+	background-image: url(../images/yellow_dino_small_left.gif);
 }
 
 .button {
@@ -261,15 +262,15 @@ button:focus {
 
 /* ITEMS */
 .meteorite {
-	background-image: url(./meteorite.gif);
+	background-image: url(../images/meteorite.gif);
 }
 
 .coin {
-	background-image: url(./coin.gif);
+	background-image: url(../images/coin.gif);
 }
 
 .lightning {
-	background-image: url(./lightning.gif);
+	background-image: url(../images/lightning.gif);
 }
 
 /* INSTRUCTIONS */
@@ -347,35 +348,35 @@ button:focus {
 }
 
 .active-player-one-red {
-	background-image: url(./red_dino_small.gif);
+	background-image: url(../images/red_dino_small.gif);
 }
 
 .active-player-one-yellow {
-	background-image: url(./yellow_dino_small.gif);
+	background-image: url(../images/yellow_dino_small.gif);
 }
 
 .active-player-one-green {
-	background-image: url(./green_dino_small.gif);
+	background-image: url(../images/green_dino_small.gif);
 }
 
 .active-player-one-blue {
-	background-image: url(./blue_dino_small.gif);
+	background-image: url(../images/blue_dino_small.gif);
 }
 
 .active-player-two-red {
-	background-image: url(./red_dino_small_left.gif);
+	background-image: url(../images/red_dino_small_left.gif);
 }
 
 .active-player-two-yellow {
-	background-image: url(./yellow_dino_small_left.gif);
+	background-image: url(../images/yellow_dino_small_left.gif);
 }
 
 .active-player-two-green {
-	background-image: url(./green_dino_small_left.gif);
+	background-image: url(../images/green_dino_small_left.gif);
 }
 
 .active-player-two-blue {
-	background-image: url(./blue_dino_small_left.gif);
+	background-image: url(../images/blue_dino_small_left.gif);
 }
 
 

@@ -30,7 +30,7 @@ startButton.onclick = function startGame() {
 		var seconds = document.getElementById('seconds');
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
-			var audio = new Audio('./mix.mp3');
+			// var audio = new Audio('./mix.mp3');
 			audio.play();
 
 			seconds.innerHTML = 'Go go go!';
@@ -95,7 +95,7 @@ function chooseColor() {
 			positionPlayerOne.classList.add('player-one-red', 'active-player-one-red', 'taken');
 			playerOneColorCell = 'red';
 			playerOneColor = 'red';
-			image1.innerHTML = '<img src="./red_dino_short.gif" alt"dino-red">';
+			image1.innerHTML = '<img src="./images/red_dino_short.gif" alt"dino-red">';
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'red') red2.classList.add('invisible');
@@ -106,7 +106,7 @@ function chooseColor() {
 			positionPlayerOne.classList.add('player-one-yellow', 'active-player-one-yellow', 'taken');
 			playerOneColorCell = 'yellow';
 			playerOneColor = 'yellow';
-			image1.innerHTML = '<img src="./yellow_dino_short.gif" alt"dino-yellow">';
+			image1.innerHTML = '<img src="./images/yellow_dino_short.gif" alt"dino-yellow">';
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'yellow') yellow2.classList.add('invisible');
@@ -117,7 +117,7 @@ function chooseColor() {
 			positionPlayerOne.classList.add('player-one-green', 'active-player-one-green', 'taken');
 			playerOneColorCell = 'green';
 			playerOneColor = 'green';
-			image1.innerHTML = '<img src="./green_dino_short.gif" alt"dino-green">';
+			image1.innerHTML = '<img src="./images/green_dino_short.gif" alt"dino-green">';
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'green') green2.classList.add('invisible');
@@ -128,7 +128,7 @@ function chooseColor() {
 			positionPlayerOne.classList.add('player-one-blue', 'active-player-one-blue', 'taken');
 			playerOneColorCell = 'blue';
 			playerOneColor = 'blue';
-			image1.innerHTML = '<img src="./blue_dino_short.gif" alt"dino-blue">';
+			image1.innerHTML = '<img src="./images/blue_dino_short.gif" alt"dino-blue">';
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'blue') blue2.classList.add('invisible');
@@ -139,7 +139,7 @@ function chooseColor() {
 			positionPlayerTwo.classList.add('player-two-red', 'active-player-two-red', 'taken');
 			playerTwoColor = 'red';
 			playerTwoColorCell = 'red';
-			image2.innerHTML = '<img src="./red_dino_short_left.gif" alt"dino-red">';
+			image2.innerHTML = '<img src="./images/red_dino_short_left.gif" alt"dino-red">';
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'red') red1.classList.add('invisible');
@@ -150,7 +150,7 @@ function chooseColor() {
 			positionPlayerTwo.classList.add('player-two-yellow', 'active-player-two-yellow', 'taken');
 			playerTwoColor = 'yellow';
 			playerTwoColorCell = 'yellow';
-			image2.innerHTML = '<img src="./yellow_dino_short_left.gif"  alt"dino-yellow">';
+			image2.innerHTML = '<img src="./images/yellow_dino_short_left.gif"  alt"dino-yellow">';
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'yellow') yellow1.classList.add('invisible');
@@ -161,7 +161,7 @@ function chooseColor() {
 			positionPlayerTwo.classList.add('player-two-green', 'active-player-two-green', 'taken');
 			playerTwoColor = 'green';
 			playerTwoColorCell = 'green';
-			image2.innerHTML = '<img src="./green_dino_short_left.gif" alt"dino-green">';
+			image2.innerHTML = '<img src="./images/green_dino_short_left.gif" alt"dino-green">';
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'green') green1.classList.add('invisible');
@@ -172,7 +172,7 @@ function chooseColor() {
 			positionPlayerTwo.classList.add('player-two-blue', 'active-player-two-blue', 'taken');
 			playerTwoColor = 'blue';
 			playerTwoColorCell = 'blue';
-			image2.innerHTML = '<img src="./blue_dino_short_left.gif" alt"dino-blue">';
+			image2.innerHTML = '<img src="./images/blue_dino_short_left.gif" alt"dino-blue">';
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'blue') blue1.classList.add('invisible');
@@ -576,29 +576,29 @@ function determineWinner() {
 
 	if (winner === player1) {
 		if (playerOneColor === 'red') {
-			winnerImage.innerHTML = "<img src='./red_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
 		} else if (playerOneColor === 'yellow') {
-			winnerImage.innerHTML = "<img src='./yellow_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
 		} else if (playerOneColor === 'green') {
-			winnerImage.innerHTML = "<img src='./green_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
 		} else if (playerOneColor === 'blue') {
-			winnerImage.innerHTML = "<img src='./blue_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
 		}
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
 	} else if (winner === player2) {
 		if (playerTwoColor === 'red') {
-			winnerImage.innerHTML = "<img src='./red_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
 		} else if (playerTwoColor === 'yellow') {
-			winnerImage.innerHTML = "<img src='./yellow_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
 		} else if (playerTwoColor === 'green') {
-			winnerImage.innerHTML = "<img src='./green_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
 		} else if (playerTwoColor === 'blue') {
-			winnerImage.innerHTML = "<img src='./blue_dino_short.gif' alt='dino-winner'>";
+			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
 		}
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
 	} else if (winner === equality) {
 		winnerImage.innerHTML =
-			"<img src='./red_dino_running.gif' alt='red dino'><img src='./yellow_dino_running.gif' alt='yellow dino'><img src='./green_dino_running.gif' alt='green dino'><img src='./blue_dino_running.gif' alt='blue dino'>";
+			"<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
 		endText.innerHTML = 'Dinosaurs can be diplomats, too. You have found a way to share your territory peacefully.';
 	}
 	buttonPlayAgain.onclick = function restart() {
