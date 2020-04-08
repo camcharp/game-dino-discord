@@ -34,5 +34,7 @@ var pointsP1 = document.getElementById('player-one-points');
 var pointsP2 = document.getElementById('player-two-points');
 
 // END
-const endText = document.getElementById('end-text'); 
 var winnerImage = document.getElementById('dino-winner');
+const endText = document.getElementById('end-text'); 
+var buttonPlayAgain = document.getElementById('play-again');
+

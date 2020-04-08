@@ -82,67 +82,51 @@ function chooseColor() {
 	}
 
 	red1.onclick = function() {
-		if (playerTwoColor != 'red') {
-			setPlayerOne('red');
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'red') red2.classList.add('invisible');
+		setPlayerOne('red');
+		removeColorChoose1();
+		red2.classList.add('invisible');
 	};
 
 	yellow1.onclick = function() {
-		if (playerTwoColor != 'yellow') {
-			setPlayerOne('yellow');
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'yellow') yellow2.classList.add('invisible');
+		setPlayerOne('yellow');
+		removeColorChoose1();
+		yellow2.classList.add('invisible');
 	};
 
 	green1.onclick = function() {
-		if (playerTwoColor != 'green') {
-			setPlayerOne('green');
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'green') green2.classList.add('invisible');
+		setPlayerOne('green');
+		removeColorChoose1();
+		green2.classList.add('invisible');
 	};
 
 	blue1.onclick = function() {
-		if (playerTwoColor != 'blue') {
-			setPlayerOne('blue');
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'blue') blue2.classList.add('invisible');
+		setPlayerOne('blue');
+		removeColorChoose1();
+		blue2.classList.add('invisible');
 	};
 
 	red2.onclick = function() {
-		if (playerOneColor != 'red') {
-			setPlayerTwo('red');
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'red') red1.classList.add('invisible');
+		setPlayerTwo('red');
+		removeColorChoose2();
+		red1.classList.add('invisible');
 	};
 
 	yellow2.onclick = function() {
-		if (playerOneColor != 'yellow') {
-			setPlayerTwo('yellow');
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'yellow') yellow1.classList.add('invisible');
+		setPlayerTwo('yellow');
+		removeColorChoose2();
+		yellow1.classList.add('invisible');
 	};
 
 	green2.onclick = function() {
-		if (playerOneColor != 'green') {
-			setPlayerTwo('green');
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'green') green1.classList.add('invisible');
+		setPlayerTwo('green');
+		removeColorChoose2();
+		green1.classList.add('invisible');
 	};
 
 	blue2.onclick = function() {
-		if (playerOneColor != 'blue') {
-			setPlayerTwo('blue');
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'blue') blue1.classList.add('invisible');
+		setPlayerTwo('blue');
+		removeColorChoose2();
+		blue1.classList.add('invisible');
 	};
 
 	function removeColorChoose1() {
@@ -527,13 +511,9 @@ function determineWinner() {
 
 	// PAGES A CACHER/AFFICHER
 	main.classList.add('hidden');
-
 	endScreen.classList.remove('hidden');
 
-	var endText = document.getElementById('end-text');
 	endText.classList.remove('hidden');
-
-	var buttonPlayAgain = document.getElementById('play-again');
 	buttonPlayAgain.classList.remove('hidden');
 
 	winnerImage.classList.remove('hidden');
