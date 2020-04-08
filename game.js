@@ -67,12 +67,23 @@ function chooseColor() {
 	var positionPlayerOne = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var positionPlayerTwo = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
+	function setPlayerOne(color) {
+		positionPlayerOne.classList.add(`player-one-${color}`, `active-player-one-${color}`, `taken`);
+		playerOneColorCell = `${color}`;
+		playerOneColor = `${color}`;
+		image1.innerHTML = `<img src="./images/${color}_dino_short.gif" alt"dino-${color}">`;
+	}
+
+	function setPlayerTwo(color) {
+		positionPlayerTwo.classList.add(`player-two-${color}`, `active-player-two-${color}`, `taken`);
+		playerTwoColor = `${color}`;
+		playerTwoColorCell = `${color}`;
+		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
+	}
+
 	red1.onclick = function() {
 		if (playerTwoColor != 'red') {
-			positionPlayerOne.classList.add('player-one-red', 'active-player-one-red', 'taken');
-			playerOneColorCell = 'red';
-			playerOneColor = 'red';
-			image1.innerHTML = '<img src="./images/red_dino_short.gif" alt"dino-red">';
+			setPlayerOne('red');
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'red') red2.classList.add('invisible');
@@ -80,10 +91,7 @@ function chooseColor() {
 
 	yellow1.onclick = function() {
 		if (playerTwoColor != 'yellow') {
-			positionPlayerOne.classList.add('player-one-yellow', 'active-player-one-yellow', 'taken');
-			playerOneColorCell = 'yellow';
-			playerOneColor = 'yellow';
-			image1.innerHTML = '<img src="./images/yellow_dino_short.gif" alt"dino-yellow">';
+			setPlayerOne('yellow');
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'yellow') yellow2.classList.add('invisible');
@@ -91,10 +99,7 @@ function chooseColor() {
 
 	green1.onclick = function() {
 		if (playerTwoColor != 'green') {
-			positionPlayerOne.classList.add('player-one-green', 'active-player-one-green', 'taken');
-			playerOneColorCell = 'green';
-			playerOneColor = 'green';
-			image1.innerHTML = '<img src="./images/green_dino_short.gif" alt"dino-green">';
+			setPlayerOne('green');
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'green') green2.classList.add('invisible');
@@ -102,10 +107,7 @@ function chooseColor() {
 
 	blue1.onclick = function() {
 		if (playerTwoColor != 'blue') {
-			positionPlayerOne.classList.add('player-one-blue', 'active-player-one-blue', 'taken');
-			playerOneColorCell = 'blue';
-			playerOneColor = 'blue';
-			image1.innerHTML = '<img src="./images/blue_dino_short.gif" alt"dino-blue">';
+			setPlayerOne('blue');
 			removeColorChoose1();
 		}
 		if (playerOneColor === 'blue') blue2.classList.add('invisible');
@@ -113,10 +115,7 @@ function chooseColor() {
 
 	red2.onclick = function() {
 		if (playerOneColor != 'red') {
-			positionPlayerTwo.classList.add('player-two-red', 'active-player-two-red', 'taken');
-			playerTwoColor = 'red';
-			playerTwoColorCell = 'red';
-			image2.innerHTML = '<img src="./images/red_dino_short_left.gif" alt"dino-red">';
+			setPlayerTwo('red');
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'red') red1.classList.add('invisible');
@@ -124,10 +123,7 @@ function chooseColor() {
 
 	yellow2.onclick = function() {
 		if (playerOneColor != 'yellow') {
-			positionPlayerTwo.classList.add('player-two-yellow', 'active-player-two-yellow', 'taken');
-			playerTwoColor = 'yellow';
-			playerTwoColorCell = 'yellow';
-			image2.innerHTML = '<img src="./images/yellow_dino_short_left.gif"  alt"dino-yellow">';
+			setPlayerTwo('yellow');
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'yellow') yellow1.classList.add('invisible');
@@ -135,10 +131,7 @@ function chooseColor() {
 
 	green2.onclick = function() {
 		if (playerOneColor != 'green') {
-			positionPlayerTwo.classList.add('player-two-green', 'active-player-two-green', 'taken');
-			playerTwoColor = 'green';
-			playerTwoColorCell = 'green';
-			image2.innerHTML = '<img src="./images/green_dino_short_left.gif" alt"dino-green">';
+			setPlayerTwo('green');
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'green') green1.classList.add('invisible');
@@ -146,10 +139,7 @@ function chooseColor() {
 
 	blue2.onclick = function() {
 		if (playerOneColor != 'blue') {
-			positionPlayerTwo.classList.add('player-two-blue', 'active-player-two-blue', 'taken');
-			playerTwoColor = 'blue';
-			playerTwoColorCell = 'blue';
-			image2.innerHTML = '<img src="./images/blue_dino_short_left.gif" alt"dino-blue">';
+			setPlayerTwo('blue');
 			removeColorChoose2();
 		}
 		if (playerTwoColor === 'blue') blue1.classList.add('invisible');
@@ -221,9 +211,6 @@ function restart() {
 }
 
 function move(event) {
-	console.log(`player one position: ${playerOne.x}-${playerOne.y}`);
-	console.log(`player two position: ${playerTwo.x}-${playerTwo.y}`);
-
 	var oldPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	oldPositionP1.classList.remove(
 		'active-player-one-red',
