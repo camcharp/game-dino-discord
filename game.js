@@ -23,7 +23,6 @@ startButton.onclick = function startGame() {
 		if (seconds.textContent == 0) {
 			// var audio = new Audio('./mix.mp3');
 			// audio.play();
-
 			seconds.innerHTML = 'Go go go!';
 			setTimeout(function() {
 				seconds.innerHTML = '';
@@ -67,19 +66,6 @@ buttonPlay.onclick = function() {
 function chooseColor() {
 	var positionPlayerOne = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var positionPlayerTwo = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
-
-	var red1 = document.getElementById('red-one');
-	var yellow1 = document.getElementById('yellow-one');
-	var green1 = document.getElementById('green-one');
-	var blue1 = document.getElementById('blue-one');
-
-	var red2 = document.getElementById('red-two');
-	var yellow2 = document.getElementById('yellow-two');
-	var green2 = document.getElementById('green-two');
-	var blue2 = document.getElementById('blue-two');
-
-	var image1 = document.getElementById('dino-one-image');
-	var image2 = document.getElementById('dino-two-image');
 
 	red1.onclick = function() {
 		if (playerTwoColor != 'red') {
