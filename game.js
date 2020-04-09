@@ -77,6 +77,7 @@ function chooseColor() {
 	function setPlayerTwo(color) {
 		positionPlayerTwo.classList.add(`player-two-${color}`, `active-player-two-${color}`, `taken`);
 		playerTwoColorCell = `${color}`;
+		playerTwo.color = `${color}`;
 		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
 	}
 
@@ -297,7 +298,7 @@ function color(colorP1, colorP2) {
 	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
 	currentPositionP1.classList.add(`active-player-one-${colorP1}`, 'taken');
-	currentPositionP2.classList.add(`active-player-one-${colorP2}`, 'taken');
+	currentPositionP2.classList.add(`active-player-two-${colorP2}`, 'taken');
 
 	// SI P1 EST RED
 	if (currentPositionP1.classList.contains('player-two-yellow') && playerOne.color === 'red') {
