@@ -5,8 +5,8 @@ init(playerOne, playerTwo);
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-var playerOneColor = null;
-var playerTwoColor = null;
+// var playerOneColor = null;
+// var playerTwo.color = null;
 
 startButton.onclick = function startGame() {
 	createMeterorites();
@@ -70,61 +70,70 @@ function chooseColor() {
 	function setPlayerOne(color) {
 		positionPlayerOne.classList.add(`player-one-${color}`, `active-player-one-${color}`, `taken`);
 		playerOneColorCell = `${color}`;
-		playerOneColor = `${color}`;
+		playerOne.color = `${color}`;
 		image1.innerHTML = `<img src="./images/${color}_dino_short.gif" alt"dino-${color}">`;
 	}
 
 	function setPlayerTwo(color) {
 		positionPlayerTwo.classList.add(`player-two-${color}`, `active-player-two-${color}`, `taken`);
-		playerTwoColor = `${color}`;
 		playerTwoColorCell = `${color}`;
 		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
 	}
 
 	red1.onclick = function() {
 		setPlayerOne('red');
+		playerOne.color = 'red';
 		removeColorChoose1();
 		red2.classList.add('invisible');
 	};
 
 	yellow1.onclick = function() {
 		setPlayerOne('yellow');
+		playerOne.color = 'yellow';
 		removeColorChoose1();
 		yellow2.classList.add('invisible');
 	};
 
 	green1.onclick = function() {
 		setPlayerOne('green');
+		playerOne.color = 'green';
 		removeColorChoose1();
 		green2.classList.add('invisible');
 	};
 
 	blue1.onclick = function() {
 		setPlayerOne('blue');
+		playerOne.color = 'blue';
 		removeColorChoose1();
 		blue2.classList.add('invisible');
 	};
 
+	console.log(playerOne, playerOne.color);
+
 	red2.onclick = function() {
 		setPlayerTwo('red');
+		playerTwo.color = 'red';
 		removeColorChoose2();
 		red1.classList.add('invisible');
 	};
 
 	yellow2.onclick = function() {
 		setPlayerTwo('yellow');
+		playerTwo.color = 'yellow';
 		removeColorChoose2();
 		yellow1.classList.add('invisible');
 	};
 
 	green2.onclick = function() {
 		setPlayerTwo('green');
+		playerTwo.color = 'green';
 		removeColorChoose2();
 		green1.classList.add('invisible');
 	};
 
 	blue2.onclick = function() {
 		setPlayerTwo('blue');
+		playerTwo.color = 'blue';
 		removeColorChoose2();
 		blue1.classList.add('invisible');
 	};
@@ -140,7 +149,7 @@ function chooseColor() {
 	}
 
 	var window = setInterval(function() {
-		if (playerOneColor != null && playerTwoColor != null) {
+		if (playerOne.color && playerTwo.color) {
 			var dino1 = document.getElementById('dino-display-one');
 			dino1.classList.add('hidden');
 			var dino2 = document.getElementById('dino-display-two');
@@ -176,9 +185,6 @@ function chooseColor() {
 }
 
 function init(playerOne, playerTwo) {
-	// board
-	var board = document.getElementById('game-board');
-
 	for (let i = 0; i < boardGame.size; i++) {
 		for (let j = 0; j < boardGame.size; j++) {
 			var cell = document.createElement('div');
@@ -187,7 +193,6 @@ function init(playerOne, playerTwo) {
 			board.appendChild(cell);
 		}
 	}
-	// items
 }
 
 function restart() {
@@ -286,174 +291,167 @@ function move(event) {
 			playerTwo.x += 1;
 	}
 
-	color();
+	color(playerOne.color,playerTwo.color);
 }
 
 var pointsP1 = 1;
 var pointsP2 = 1;
 
-function color() {
+function color(colorP1, colorP2) {
 	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-	if (playerOneColor === 'red') currentPositionP1.classList.add('active-player-one-red', 'taken');
-	else if (playerOneColor === 'yellow') currentPositionP1.classList.add('active-player-one-yellow', 'taken');
-	else if (playerOneColor === 'green') currentPositionP1.classList.add('active-player-one-green', 'taken');
-	else if (playerOneColor === 'blue') currentPositionP1.classList.add('active-player-one-blue', 'taken');
-
-	if (playerTwoColor === 'red') currentPositionP2.classList.add('active-player-two-red', 'taken');
-	else if (playerTwoColor === 'yellow') currentPositionP2.classList.add('active-player-two-yellow', 'taken');
-	else if (playerTwoColor === 'green') currentPositionP2.classList.add('active-player-two-green', 'taken');
-	else if (playerTwoColor === 'blue') currentPositionP2.classList.add('active-player-two-blue', 'taken');
+	currentPositionP1.classList.add(`active-player-one-${colorP1}`, 'taken');
+	currentPositionP2.classList.add(`active-player-one-${colorP2}`, 'taken');
 
 	// SI P1 EST RED
-	if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'red') {
+	if (currentPositionP1.classList.contains('player-two-yellow') && playerOne.color === 'red') {
 		currentPositionP1.classList.replace('player-two-yellow', 'player-one-red');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'red') {
+	} else if (currentPositionP1.classList.contains('player-two-green') && playerOne.color === 'red') {
 		currentPositionP1.classList.replace('player-two-green', 'player-one-red');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'red') {
+	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOne.color === 'red') {
 		currentPositionP1.classList.replace('player-two-blue', 'player-one-red');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	}
-	if (playerOneColor === 'red' && !currentPositionP1.classList.contains('player-one-red')) {
+	if (playerOne.color === 'red' && !currentPositionP1.classList.contains('player-one-red')) {
 		currentPositionP1.classList.add('player-one-red');
 		pointsP1 += 1;
 	}
 
 	// SI P1 EST YELLOW
-	if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'yellow') {
+	if (currentPositionP1.classList.contains('player-two-red') && playerOne.color === 'yellow') {
 		currentPositionP1.classList.replace('player-two-red', 'player-one-yellow');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'yellow') {
+	} else if (currentPositionP1.classList.contains('player-two-green') && playerOne.color === 'yellow') {
 		currentPositionP1.classList.replace('player-two-green', 'player-one-yellow');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'yellow') {
+	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOne.color === 'yellow') {
 		currentPositionP1.classList.replace('player-two-blue', 'player-one-yellow');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	}
-	if (playerOneColor === 'yellow' && !currentPositionP1.classList.contains('player-one-yellow')) {
+	if (playerOne.color === 'yellow' && !currentPositionP1.classList.contains('player-one-yellow')) {
 		currentPositionP1.classList.add('player-one-yellow');
 		pointsP1 += 1;
 	}
 
 	// SI P1 EST GREEN
-	if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'green') {
+	if (currentPositionP1.classList.contains('player-two-yellow') && playerOne.color === 'green') {
 		currentPositionP1.classList.replace('player-two-yellow', 'player-one-green');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'green') {
+	} else if (currentPositionP1.classList.contains('player-two-red') && playerOne.color === 'green') {
 		currentPositionP1.classList.replace('player-two-red', 'player-one-green');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'green') {
+	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOne.color === 'green') {
 		currentPositionP1.classList.replace('player-two-blue', 'player-one-green');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	}
-	if (playerOneColor === 'green' && !currentPositionP1.classList.contains('player-one-green')) {
+	if (playerOne.color === 'green' && !currentPositionP1.classList.contains('player-one-green')) {
 		currentPositionP1.classList.add('player-one-green');
 		pointsP1 += 1;
 	}
 
 	// SI P1 EST BLUE
-	if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'blue') {
+	if (currentPositionP1.classList.contains('player-two-red') && playerOne.color === 'blue') {
 		currentPositionP1.classList.replace('player-two-red', 'player-one-blue');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'blue') {
+	} else if (currentPositionP1.classList.contains('player-two-yellow') && playerOne.color === 'blue') {
 		currentPositionP1.classList.replace('player-two-yellow', 'player-one-blue');
 		pointsP1 += 1;
 		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'blue') {
+	} else if (currentPositionP1.classList.contains('player-two-green') && playerOne.color === 'blue') {
 		currentPositionP1.classList.replace('player-two-green', 'player-one-blue');
 		pointsP1 += 1;
 		pointsP2 -= 1;
 	}
-	if (playerOneColor === 'blue' && !currentPositionP1.classList.contains('player-one-blue')) {
+	if (playerOne.color === 'blue' && !currentPositionP1.classList.contains('player-one-blue')) {
 		currentPositionP1.classList.add('player-one-blue');
 		pointsP1 += 1;
 	}
 
 	// SI P2 EST RED
-	if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'red') {
+	if (currentPositionP2.classList.contains('player-one-yellow') && playerTwo.color === 'red') {
 		currentPositionP2.classList.replace('player-one-yellow', 'player-two-red');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'red') {
+	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwo.color === 'red') {
 		currentPositionP2.classList.replace('player-one-green', 'player-two-red');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOneColor === 'red') {
+	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOne.color === 'red') {
 		currentPositionP2.classList.replace('player-one-blue', 'player-two-red');
 		pointsP2 += 1;
 		pointsP1 -= 1;
 	}
-	if (playerTwoColor === 'red' && !currentPositionP2.classList.contains('player-two-red')) {
+	if (playerTwo.color === 'red' && !currentPositionP2.classList.contains('player-two-red')) {
 		currentPositionP2.classList.add('player-two-red');
 		pointsP2 += 1;
 	}
 
 	// SI P2 EST YELLOW
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'yellow') {
+	if (currentPositionP2.classList.contains('player-one-red') && playerTwo.color === 'yellow') {
 		currentPositionP2.classList.replace('player-one-red', 'player-two-yellow');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'yellow') {
+	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwo.color === 'yellow') {
 		currentPositionP2.classList.replace('player-one-green', 'player-two-yellow');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOneColor === 'yellow') {
+	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOne.color === 'yellow') {
 		currentPositionP2.classList.replace('player-one-blue', 'player-two-yellow');
 		pointsP2 += 1;
 		pointsP1 -= 1;
 	}
-	if (playerTwoColor === 'yellow' && !currentPositionP2.classList.contains('player-two-yellow')) {
+	if (playerTwo.color === 'yellow' && !currentPositionP2.classList.contains('player-two-yellow')) {
 		currentPositionP2.classList.add('player-two-yellow');
 		pointsP2 += 1;
 	}
 
 	// SI P2 EST GREEN
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'green') {
+	if (currentPositionP2.classList.contains('player-one-red') && playerTwo.color === 'green') {
 		currentPositionP2.classList.replace('player-one-red', 'player-two-green');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'green') {
+	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwo.color === 'green') {
 		currentPositionP2.classList.replace('player-one-yellow', 'player-two-green');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerTwoColor === 'green') {
+	} else if (currentPositionP2.classList.contains('player-one-blue') && playerTwo.color === 'green') {
 		currentPositionP2.classList.replace('player-one-blue', 'player-two-green');
 		pointsP2 += 1;
 		pointsP1 -= 1;
 	}
-	if (playerTwoColor === 'green' && !currentPositionP2.classList.contains('player-two-green')) {
+	if (playerTwo.color === 'green' && !currentPositionP2.classList.contains('player-two-green')) {
 		currentPositionP2.classList.add('player-two-green');
 		pointsP2 += 1;
 	}
 
 	// SI P2 EST BLUE
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'blue') {
+	if (currentPositionP2.classList.contains('player-one-red') && playerTwo.color === 'blue') {
 		currentPositionP2.classList.replace('player-one-red', 'player-two-blue');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'blue') {
+	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwo.color === 'blue') {
 		currentPositionP2.classList.replace('player-one-yellow', 'player-two-blue');
 		pointsP2 += 1;
 		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'blue') {
+	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwo.color === 'blue') {
 		currentPositionP2.classList.replace('player-one-green', 'player-two-blue');
 		pointsP2 += 1;
 		pointsP1 -= 1;
 	}
-	if (playerTwoColor === 'blue' && !currentPositionP2.classList.contains('player-two-blue')) {
+	if (playerTwo.color === 'blue' && !currentPositionP2.classList.contains('player-two-blue')) {
 		currentPositionP2.classList.add('player-two-blue');
 		pointsP2 += 1;
 	}
@@ -519,24 +517,24 @@ function determineWinner() {
 	winnerImage.classList.remove('hidden');
 
 	if (winner === player1) {
-		if (playerOneColor === 'red') {
+		if (playerOne.color === 'red') {
 			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'yellow') {
+		} else if (playerOne.color === 'yellow') {
 			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'green') {
+		} else if (playerOne.color === 'green') {
 			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'blue') {
+		} else if (playerOne.color === 'blue') {
 			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
 		}
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
 	} else if (winner === player2) {
-		if (playerTwoColor === 'red') {
+		if (playerTwo.color === 'red') {
 			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'yellow') {
+		} else if (playerTwo.color === 'yellow') {
 			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'green') {
+		} else if (playerTwo.color === 'green') {
 			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'blue') {
+		} else if (playerTwo.color === 'blue') {
 			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
 		}
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";

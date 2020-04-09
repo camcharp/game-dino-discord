@@ -5,6 +5,7 @@ var buttonMenu = document.getElementById("menu");
 
 // BOARD
 const main = document.getElementById('main');
+var board = document.getElementById('game-board');
 const endScreen = document.getElementById('end-screen');
 const buttonInstructions = document.getElementById('instruction');
 const instructions = document.getElementById('instructions');
