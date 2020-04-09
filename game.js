@@ -81,59 +81,51 @@ function chooseColor() {
 		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
 	}
 
+	for (const dino of dinos1) {
+		dino.addEventListener('click', function() {
+			setPlayerOne(`${dino.dataset.color}`);
+			playerOne.color = `${dino.dataset.color}`;
+			removeColorChoose1();
+		})
+	}
+
 	red1.onclick = function() {
-		setPlayerOne('red');
-		playerOne.color = 'red';
-		removeColorChoose1();
 		red2.classList.add('invisible');
 	};
 
 	yellow1.onclick = function() {
-		setPlayerOne('yellow');
-		playerOne.color = 'yellow';
-		removeColorChoose1();
 		yellow2.classList.add('invisible');
 	};
 
 	green1.onclick = function() {
-		setPlayerOne('green');
-		playerOne.color = 'green';
-		removeColorChoose1();
 		green2.classList.add('invisible');
 	};
 
 	blue1.onclick = function() {
-		setPlayerOne('blue');
-		playerOne.color = 'blue';
-		removeColorChoose1();
 		blue2.classList.add('invisible');
 	};
 
+	for (const dino of dinos2) {
+		dino.addEventListener('click', function() {
+			setPlayerTwo(`${dino.dataset.color}`);
+			playerTwo.color = `${dino.dataset.color}`;
+			removeColorChoose2();
+		})
+	}
+
 	red2.onclick = function() {
-		setPlayerTwo('red');
-		playerTwo.color = 'red';
-		removeColorChoose2();
 		red1.classList.add('invisible');
 	};
 
 	yellow2.onclick = function() {
-		setPlayerTwo('yellow');
-		playerTwo.color = 'yellow';
-		removeColorChoose2();
 		yellow1.classList.add('invisible');
 	};
 
 	green2.onclick = function() {
-		setPlayerTwo('green');
-		playerTwo.color = 'green';
-		removeColorChoose2();
 		green1.classList.add('invisible');
 	};
 
 	blue2.onclick = function() {
-		setPlayerTwo('blue');
-		playerTwo.color = 'blue';
-		removeColorChoose2();
 		blue1.classList.add('invisible');
 	};
 

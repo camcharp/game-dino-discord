@@ -22,6 +22,9 @@ const yellow1 = document.getElementById('yellow-one');
 const green1 = document.getElementById('green-one');
 const blue1 = document.getElementById('blue-one');
 
+var dinos1 = document.querySelectorAll('.dino-1');
+var dinos2 = document.querySelectorAll('.dino-2');
+
 const red2 = document.getElementById('red-two');
 const yellow2 = document.getElementById('yellow-two');
 const green2 = document.getElementById('green-two');
