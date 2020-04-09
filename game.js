@@ -108,8 +108,6 @@ function chooseColor() {
 		blue2.classList.add('invisible');
 	};
 
-	console.log(playerOne, playerOne.color);
-
 	red2.onclick = function() {
 		setPlayerTwo('red');
 		playerTwo.color = 'red';
@@ -453,19 +451,12 @@ function color(colorP1, colorP2) {
 		playerTwo.points += 1;
 	}
 
-	console.log(playerOne.points, playerTwo.points)
-
 	countPoints();
 }
 
 function countPoints() {
-	console.log(playerOne.points, playerTwo.points)
-
-	var displayPointsP1 = document.getElementById('player-one-points');
-	displayPointsP1.textContent = playerOne.points;
-
-	var displayPointsP2 = document.getElementById('player-two-points');
-	displayPointsP2.textContent = playerTwo.points;
+	document.getElementById('player-one-points').textContent = playerOne.points;
+	document.getElementById('player-two-points').textContent = playerTwo.points;
 }
 
 function getRandomInt(min, max) {
@@ -494,36 +485,28 @@ function createMeterorites() {
 }
 
 function determineWinner() {
-	player1 = 'Player 1';
-	player2 = 'Player 2';
-	equality = 'equality';
-	winner = null;
+	var winner = null;
+	if (playerOne.points > playerTwo.points) {
+		winner = playerOne;
+	} else if (playerOne.points < playerTwo.points) {
+		winner = playerTwo
+	}
 
-	// NOM DU GAGNANT EN FONCTION DES POINTS
-	if (playerOne.points > playerTwo.points) winner = player1;
-	if (playerOne.points < playerTwo.points) winner = player2;
-	if (playerOne.points === playerTwo.points) winner = equality;
-	winnerImage = document.getElementById('dino-winner');
-
-	// PAGES A CACHER/AFFICHER
 	main.classList.add('hidden');
 	endScreen.classList.remove('hidden');
-
 	endText.classList.remove('hidden');
 	buttonPlayAgain.classList.remove('hidden');
-
 	winnerImage.classList.remove('hidden');
 
-	if (winner === player1) {
+	if (winner === playerOne) {
 		winnerImage.innerHTML = `<img src='./images/${playerOne.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
-	} else if (winner === player2) {
+	} else if (winner === playerTwo) {
 		winnerImage.innerHTML = `<img src='./images/${playerTwo.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
-	} else if (winner === equality) {
-		winnerImage.innerHTML =
-			"<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
-		endText.innerHTML = 'Dinosaurs can be diplomats, too. You have found a way to share your territory peacefully.';
+	} else {
+		winnerImage.innerHTML = "<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
+		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';
 	}
 	buttonPlayAgain.onclick = function restart() {
 		location.reload();
