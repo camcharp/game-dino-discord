@@ -517,26 +517,10 @@ function determineWinner() {
 	winnerImage.classList.remove('hidden');
 
 	if (winner === player1) {
-		if (playerOne.color === 'red') {
-			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOne.color === 'yellow') {
-			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOne.color === 'green') {
-			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOne.color === 'blue') {
-			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
-		}
+		winnerImage.innerHTML = `<img src='./images/${playerOne.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
 	} else if (winner === player2) {
-		if (playerTwo.color === 'red') {
-			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwo.color === 'yellow') {
-			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwo.color === 'green') {
-			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwo.color === 'blue') {
-			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
-		}
+		winnerImage.innerHTML = `<img src='./images/${playerTwo.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
 	} else if (winner === equality) {
 		winnerImage.innerHTML =
