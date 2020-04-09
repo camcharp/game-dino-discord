@@ -485,28 +485,21 @@ function createMeterorites() {
 }
 
 function determineWinner() {
-	var winner = null;
-	if (playerOne.points > playerTwo.points) {
-		winner = playerOne;
-	} else if (playerOne.points < playerTwo.points) {
-		winner = playerTwo
-	}
-
 	main.classList.add('hidden');
 	endScreen.classList.remove('hidden');
 	endText.classList.remove('hidden');
 	buttonPlayAgain.classList.remove('hidden');
 	winnerImage.classList.remove('hidden');
 
-	if (winner === playerOne) {
+	if (playerOne.points > playerTwo.points) {
 		winnerImage.innerHTML = `<img src='./images/${playerOne.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
-	} else if (winner === playerTwo) {
+	} else if (playerOne.points < playerTwo.points) {
 		winnerImage.innerHTML = `<img src='./images/${playerTwo.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
 	} else {
 		winnerImage.innerHTML = "<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
-		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';
+		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';	
 	}
 	buttonPlayAgain.onclick = function restart() {
 		location.reload();
