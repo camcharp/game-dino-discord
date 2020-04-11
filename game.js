@@ -1,9 +1,19 @@
 
-// créer le board
-init(playerOne, playerTwo);
-
+const restart = () => location.reload()
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
+
+function init() {
+	for (let i = 0; i < boardGame.size; i++) {
+		for (let j = 0; j < boardGame.size; j++) {
+			var cell = document.createElement('div');
+			cell.className = 'cell';
+			cell.id = `${i}-${j}`;
+			board.appendChild(cell);
+		}
+	}
+}
+init(); // let's create the board
 
 startButton.onclick = function startGame() {
 	createMeterorites();
@@ -164,21 +174,6 @@ function chooseColor() {
 			clearInterval(window);
 		}
 	}, 100);
-}
-
-function init(playerOne, playerTwo) {
-	for (let i = 0; i < boardGame.size; i++) {
-		for (let j = 0; j < boardGame.size; j++) {
-			var cell = document.createElement('div');
-			cell.className = 'cell';
-			cell.id = `${i}-${j}`;
-			board.appendChild(cell);
-		}
-	}
-}
-
-function restart() {
-	location.reload();
 }
 
 function move(event) {
@@ -349,16 +344,10 @@ function determineWinner() {
 		winnerImage.innerHTML = "<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
 		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';	
 	}
-	buttonPlayAgain.onclick = function restart() {
-		location.reload();
-	};
 }
 
 // DISPLAY INSTRUCTIONS
 buttonInstructions.onclick = function displayInstruction() {
 	instructions.classList.remove('hidden');
 	startScreen.classList.add('hidden');
-	buttonMenu.onclick = function restart() {
-		location.reload();
-	};
 };
