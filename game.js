@@ -95,7 +95,7 @@ function chooseColor() {
 		dino.addEventListener('click', function() {
 			playAudio('./music/bip.wav');
 			setPlayerOne(`${dino.dataset.color}`);
-			removeColorChoose1();
+			removeChooseDinoMenu(1);
 		})
 	}
 
@@ -119,7 +119,7 @@ function chooseColor() {
 		dino.addEventListener('click', function() {
 			playAudio('./music/bip.wav');
 			setPlayerTwo(`${dino.dataset.color}`);
-			removeColorChoose2();
+			removeChooseDinoMenu(2);
 		})
 	}
 
@@ -139,22 +139,12 @@ function chooseColor() {
 		blue1.classList.add('invisible');
 	};
 
-	function removeColorChoose1() {
-		var chooseYourColor = document.getElementById('dino-display-one');
-		chooseYourColor.classList.add('invisible');
-	}
-
-	function removeColorChoose2() {
-		var chooseYourColor2 = document.getElementById('dino-display-two');
-		chooseYourColor2.classList.add('invisible');
-	}
+	const removeChooseDinoMenu = (playerNumber) => document.getElementById(`dino-display-${playerNumber}`).classList.add('invisible');
 
 	var window = setInterval(function() {
 		if (playerOne.color && playerTwo.color) {
-			var dino1 = document.getElementById('dino-display-one');
-			dino1.classList.add('hidden');
-			var dino2 = document.getElementById('dino-display-two');
-			dino2.classList.add('hidden');
+			document.getElementById('dino-display-1').classList.add('hidden');
+			document.getElementById('dino-display-2').classList.add('hidden');
 
 			var buttonStart = document.getElementById('start');
 			buttonStart.classList.remove('hidden');
