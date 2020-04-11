@@ -1,38 +1,39 @@
 
-// créer le board
-init(playerOne, playerTwo);
-
-const startButton = document.getElementById('start');
-const countdown = document.getElementById('countdown');
-const ready = document.getElementById('ready');
-const seconds = document.getElementById('seconds');
-const startScreen = document.getElementById('start-screen');
-const main = document.getElementById('main');
-const endScreen = document.getElementById('end-screen');
-const countdownText = document.getElementById('countdown-text');
-
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-var playerOneColor = null;
-var playerTwoColor = null;
+const restart = () => location.reload()
+const getRandomInt = (min, max) => Math.floor(Math.random(min) * Math.floor(max));
+const displayInstruction = () => {
+	instructions.classList.remove('hidden');
+	startScreen.classList.add('hidden');
+};
+
+function init() {
+	for (let i = 0; i < boardGame.size; i++) {
+		for (let j = 0; j < boardGame.size; j++) {
+			var cell = document.createElement('div');
+			cell.className = 'cell';
+			cell.id = `${i}-${j}`;
+			board.appendChild(cell);
+		}
+	}
+}
+init(); // let's create the board
 
 startButton.onclick = function startGame() {
 	createMeterorites();
-
 	startButton.classList.add('hidden');
 	ready.classList.add('hidden');
 	countdown.classList.remove('hidden');
 	seconds.classList.remove('hidden');
 
-	// compte à rebours avant le début du jeu
-	var x = setInterval(function() {
+	var x = setInterval(function() { 	// compte à rebours avant le début du jeu
 		var seconds = document.getElementById('seconds');
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
 			// var audio = new Audio('./mix.mp3');
-			audio.play();
-
+			// audio.play();
 			seconds.innerHTML = 'Go go go!';
 			setTimeout(function() {
 				seconds.innerHTML = '';
@@ -55,21 +56,13 @@ startButton.onclick = function startGame() {
 				}, 4000);
 			}
 		}, 1000);
-
 		document.addEventListener('keyup', move);
-		{
-		}
 	}, 3000);
 };
 
-var buttonPlay = document.getElementById('play');
 buttonPlay.onclick = function() {
-	var main = document.getElementById('main');
 	main.classList.remove('hidden');
-
-	var startScreen = document.getElementById('start-screen');
 	startScreen.classList.add('hidden');
-
 	chooseColor();
 };
 
@@ -77,105 +70,66 @@ function chooseColor() {
 	var positionPlayerOne = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var positionPlayerTwo = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-	var red1 = document.getElementById('red-one');
-	var yellow1 = document.getElementById('yellow-one');
-	var green1 = document.getElementById('green-one');
-	var blue1 = document.getElementById('blue-one');
+	function setPlayerOne(color) {
+		positionPlayerOne.classList.add(`player-one-${color}`, `active-player-one-${color}`, `taken`);
+		playerOneColorCell = `${color}`;
+		playerOne.color = `${color}`;
+		image1.innerHTML = `<img src="./images/${color}_dino_short.gif" alt"dino-${color}">`;
+	}
 
-	var red2 = document.getElementById('red-two');
-	var yellow2 = document.getElementById('yellow-two');
-	var green2 = document.getElementById('green-two');
-	var blue2 = document.getElementById('blue-two');
+	function setPlayerTwo(color) {
+		positionPlayerTwo.classList.add(`player-two-${color}`, `active-player-two-${color}`, `taken`);
+		playerTwoColorCell = `${color}`;
+		playerTwo.color = `${color}`;
+		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
+	}
 
-	var image1 = document.getElementById('dino-one-image');
-	var image2 = document.getElementById('dino-two-image');
+	for (const dino of dinos1) {
+		dino.addEventListener('click', function() {
+			setPlayerOne(`${dino.dataset.color}`);
+			playerOne.color = `${dino.dataset.color}`;
+			removeColorChoose1();
+		})
+	}
 
 	red1.onclick = function() {
-		if (playerTwoColor != 'red') {
-			positionPlayerOne.classList.add('player-one-red', 'active-player-one-red', 'taken');
-			playerOneColorCell = 'red';
-			playerOneColor = 'red';
-			image1.innerHTML = '<img src="./images/red_dino_short.gif" alt"dino-red">';
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'red') red2.classList.add('invisible');
+		red2.classList.add('invisible');
 	};
 
 	yellow1.onclick = function() {
-		if (playerTwoColor != 'yellow') {
-			positionPlayerOne.classList.add('player-one-yellow', 'active-player-one-yellow', 'taken');
-			playerOneColorCell = 'yellow';
-			playerOneColor = 'yellow';
-			image1.innerHTML = '<img src="./images/yellow_dino_short.gif" alt"dino-yellow">';
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'yellow') yellow2.classList.add('invisible');
+		yellow2.classList.add('invisible');
 	};
 
 	green1.onclick = function() {
-		if (playerTwoColor != 'green') {
-			positionPlayerOne.classList.add('player-one-green', 'active-player-one-green', 'taken');
-			playerOneColorCell = 'green';
-			playerOneColor = 'green';
-			image1.innerHTML = '<img src="./images/green_dino_short.gif" alt"dino-green">';
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'green') green2.classList.add('invisible');
+		green2.classList.add('invisible');
 	};
 
 	blue1.onclick = function() {
-		if (playerTwoColor != 'blue') {
-			positionPlayerOne.classList.add('player-one-blue', 'active-player-one-blue', 'taken');
-			playerOneColorCell = 'blue';
-			playerOneColor = 'blue';
-			image1.innerHTML = '<img src="./images/blue_dino_short.gif" alt"dino-blue">';
-			removeColorChoose1();
-		}
-		if (playerOneColor === 'blue') blue2.classList.add('invisible');
+		blue2.classList.add('invisible');
 	};
 
-	red2.onclick = function() {
-		if (playerOneColor != 'red') {
-			positionPlayerTwo.classList.add('player-two-red', 'active-player-two-red', 'taken');
-			playerTwoColor = 'red';
-			playerTwoColorCell = 'red';
-			image2.innerHTML = '<img src="./images/red_dino_short_left.gif" alt"dino-red">';
+	for (const dino of dinos2) {
+		dino.addEventListener('click', function() {
+			setPlayerTwo(`${dino.dataset.color}`);
+			playerTwo.color = `${dino.dataset.color}`;
 			removeColorChoose2();
-		}
-		if (playerTwoColor === 'red') red1.classList.add('invisible');
+		})
+	}
+
+	red2.onclick = function() {
+		red1.classList.add('invisible');
 	};
 
 	yellow2.onclick = function() {
-		if (playerOneColor != 'yellow') {
-			positionPlayerTwo.classList.add('player-two-yellow', 'active-player-two-yellow', 'taken');
-			playerTwoColor = 'yellow';
-			playerTwoColorCell = 'yellow';
-			image2.innerHTML = '<img src="./images/yellow_dino_short_left.gif"  alt"dino-yellow">';
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'yellow') yellow1.classList.add('invisible');
+		yellow1.classList.add('invisible');
 	};
 
 	green2.onclick = function() {
-		if (playerOneColor != 'green') {
-			positionPlayerTwo.classList.add('player-two-green', 'active-player-two-green', 'taken');
-			playerTwoColor = 'green';
-			playerTwoColorCell = 'green';
-			image2.innerHTML = '<img src="./images/green_dino_short_left.gif" alt"dino-green">';
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'green') green1.classList.add('invisible');
+		green1.classList.add('invisible');
 	};
 
 	blue2.onclick = function() {
-		if (playerOneColor != 'blue') {
-			positionPlayerTwo.classList.add('player-two-blue', 'active-player-two-blue', 'taken');
-			playerTwoColor = 'blue';
-			playerTwoColorCell = 'blue';
-			image2.innerHTML = '<img src="./images/blue_dino_short_left.gif" alt"dino-blue">';
-			removeColorChoose2();
-		}
-		if (playerTwoColor === 'blue') blue1.classList.add('invisible');
+		blue1.classList.add('invisible');
 	};
 
 	function removeColorChoose1() {
@@ -189,7 +143,7 @@ function chooseColor() {
 	}
 
 	var window = setInterval(function() {
-		if (playerOneColor != null && playerTwoColor != null) {
+		if (playerOne.color && playerTwo.color) {
 			var dino1 = document.getElementById('dino-display-one');
 			dino1.classList.add('hidden');
 			var dino2 = document.getElementById('dino-display-two');
@@ -224,46 +178,31 @@ function chooseColor() {
 	}, 100);
 }
 
-function init(playerOne, playerTwo) {
-	// board
-	var board = document.getElementById('game-board');
-
-	for (let i = 0; i < boardGame.size; i++) {
-		for (let j = 0; j < boardGame.size; j++) {
-			var cell = document.createElement('div');
-			cell.className = 'cell';
-			cell.id = `${i}-${j}`;
-			board.appendChild(cell);
-		}
+function placeMeteorite(){
+	var randomCell = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
+	if (randomCell != currentPositionP1 && randomCell != currentPositionP2) {
+		randomCell.classList.add('meteorite', 'taken');
 	}
-	// items
 }
 
-function restart() {
-	location.reload();
+function createMeterorites() {
+	for (i = 1; i < 3; i++) { // meteorites at the beginning of the game
+		placeMeteorite();
+	}
+	window.setInterval(function() { // random meteorites during the game
+		setTimeout(function() {
+			placeMeteorite();
+		}, 5000);
+		clearInterval(window);
+	}, 4000);
 }
 
 function move(event) {
-	console.log(`player one position: ${playerOne.x}-${playerOne.y}`);
-	console.log(`player two position: ${playerTwo.x}-${playerTwo.y}`);
-
 	var oldPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
-	oldPositionP1.classList.remove(
-		'active-player-one-red',
-		'active-player-one-yellow',
-		'active-player-one-green',
-		'active-player-one-blue',
-		'taken'
-	);
+	oldPositionP1.classList.remove(`active-player-one-${playerOne.color}`,'taken');
 
 	var oldPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
-	oldPositionP2.classList.remove(
-		'active-player-two-red',
-		'active-player-two-yellow',
-		'active-player-two-green',
-		'active-player-two-blue',
-		'taken'
-	);
+	oldPositionP2.classList.remove(`active-player-two-${playerTwo.color}`,'taken');
 
 	var leftP1 = document.getElementById(`${playerOne.x}-${playerOne.y - 1}`);
 	var topP1 = document.getElementById(`${playerOne.x - 1}-${playerOne.y}`);
@@ -341,281 +280,52 @@ function move(event) {
 	color();
 }
 
-var pointsP1 = 1;
-var pointsP2 = 1;
+function displayPoints() {
+	document.getElementById('player-one-points').textContent = playerOne.points;
+	document.getElementById('player-two-points').textContent = playerTwo.points;
+}
 
 function color() {
 	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-	if (playerOneColor === 'red') currentPositionP1.classList.add('active-player-one-red', 'taken');
-	else if (playerOneColor === 'yellow') currentPositionP1.classList.add('active-player-one-yellow', 'taken');
-	else if (playerOneColor === 'green') currentPositionP1.classList.add('active-player-one-green', 'taken');
-	else if (playerOneColor === 'blue') currentPositionP1.classList.add('active-player-one-blue', 'taken');
+	currentPositionP1.classList.add(`active-player-one-${playerOne.color}`, 'taken');
+	currentPositionP2.classList.add(`active-player-two-${playerTwo.color}`, 'taken');
 
-	if (playerTwoColor === 'red') currentPositionP2.classList.add('active-player-two-red', 'taken');
-	else if (playerTwoColor === 'yellow') currentPositionP2.classList.add('active-player-two-yellow', 'taken');
-	else if (playerTwoColor === 'green') currentPositionP2.classList.add('active-player-two-green', 'taken');
-	else if (playerTwoColor === 'blue') currentPositionP2.classList.add('active-player-two-blue', 'taken');
-
-	// SI P1 EST RED
-	if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'red') {
-		currentPositionP1.classList.replace('player-two-yellow', 'player-one-red');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'red') {
-		currentPositionP1.classList.replace('player-two-green', 'player-one-red');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'red') {
-		currentPositionP1.classList.replace('player-two-blue', 'player-one-red');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	}
-	if (playerOneColor === 'red' && !currentPositionP1.classList.contains('player-one-red')) {
-		currentPositionP1.classList.add('player-one-red');
-		pointsP1 += 1;
+	if (currentPositionP1.classList.contains(`player-two-${playerTwo.color}`)) {
+		currentPositionP1.classList.replace(`player-two-${playerTwo.color}`, `player-one-${playerOne.color}`);
+		playerOne.points += 1;
+		playerTwo.points -= 1;
+	} else if (!currentPositionP1.classList.contains(`player-one-${playerOne.color}`)) {
+		currentPositionP1.classList.add(`player-one-${playerOne.color}`);
+		playerOne.points += 1;
 	}
 
-	// SI P1 EST YELLOW
-	if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'yellow') {
-		currentPositionP1.classList.replace('player-two-red', 'player-one-yellow');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'yellow') {
-		currentPositionP1.classList.replace('player-two-green', 'player-one-yellow');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'yellow') {
-		currentPositionP1.classList.replace('player-two-blue', 'player-one-yellow');
-		pointsP1 += 1;
-		pointsP2 -= 1;
+	if (currentPositionP2.classList.contains(`player-one-${playerOne.color}`)) {
+		currentPositionP2.classList.replace(`player-one-${playerOne.color}`, `player-two-${playerTwo.color}`);
+		playerTwo.points += 1;
+		playerOne.points -= 1;
+	} else if (!currentPositionP2.classList.contains(`player-two-${playerTwo.color}`)) {
+		currentPositionP2.classList.add(`player-two-${playerTwo.color}`);
+		playerTwo.points += 1;
 	}
-	if (playerOneColor === 'yellow' && !currentPositionP1.classList.contains('player-one-yellow')) {
-		currentPositionP1.classList.add('player-one-yellow');
-		pointsP1 += 1;
-	}
-
-	// SI P1 EST GREEN
-	if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'green') {
-		currentPositionP1.classList.replace('player-two-yellow', 'player-one-green');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'green') {
-		currentPositionP1.classList.replace('player-two-red', 'player-one-green');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-blue') && playerOneColor === 'green') {
-		currentPositionP1.classList.replace('player-two-blue', 'player-one-green');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	}
-	if (playerOneColor === 'green' && !currentPositionP1.classList.contains('player-one-green')) {
-		currentPositionP1.classList.add('player-one-green');
-		pointsP1 += 1;
-	}
-
-	// SI P1 EST BLUE
-	if (currentPositionP1.classList.contains('player-two-red') && playerOneColor === 'blue') {
-		currentPositionP1.classList.replace('player-two-red', 'player-one-blue');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-yellow') && playerOneColor === 'blue') {
-		currentPositionP1.classList.replace('player-two-yellow', 'player-one-blue');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	} else if (currentPositionP1.classList.contains('player-two-green') && playerOneColor === 'blue') {
-		currentPositionP1.classList.replace('player-two-green', 'player-one-blue');
-		pointsP1 += 1;
-		pointsP2 -= 1;
-	}
-	if (playerOneColor === 'blue' && !currentPositionP1.classList.contains('player-one-blue')) {
-		currentPositionP1.classList.add('player-one-blue');
-		pointsP1 += 1;
-	}
-
-	// SI P2 EST RED
-	if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'red') {
-		currentPositionP2.classList.replace('player-one-yellow', 'player-two-red');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'red') {
-		currentPositionP2.classList.replace('player-one-green', 'player-two-red');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOneColor === 'red') {
-		currentPositionP2.classList.replace('player-one-blue', 'player-two-red');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	}
-	if (playerTwoColor === 'red' && !currentPositionP2.classList.contains('player-two-red')) {
-		currentPositionP2.classList.add('player-two-red');
-		pointsP2 += 1;
-	}
-
-	// SI P2 EST YELLOW
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'yellow') {
-		currentPositionP2.classList.replace('player-one-red', 'player-two-yellow');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'yellow') {
-		currentPositionP2.classList.replace('player-one-green', 'player-two-yellow');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerOneColor === 'yellow') {
-		currentPositionP2.classList.replace('player-one-blue', 'player-two-yellow');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	}
-	if (playerTwoColor === 'yellow' && !currentPositionP2.classList.contains('player-two-yellow')) {
-		currentPositionP2.classList.add('player-two-yellow');
-		pointsP2 += 1;
-	}
-
-	// SI P2 EST GREEN
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'green') {
-		currentPositionP2.classList.replace('player-one-red', 'player-two-green');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'green') {
-		currentPositionP2.classList.replace('player-one-yellow', 'player-two-green');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-blue') && playerTwoColor === 'green') {
-		currentPositionP2.classList.replace('player-one-blue', 'player-two-green');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	}
-	if (playerTwoColor === 'green' && !currentPositionP2.classList.contains('player-two-green')) {
-		currentPositionP2.classList.add('player-two-green');
-		pointsP2 += 1;
-	}
-
-	// SI P2 EST BLUE
-	if (currentPositionP2.classList.contains('player-one-red') && playerTwoColor === 'blue') {
-		currentPositionP2.classList.replace('player-one-red', 'player-two-blue');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-yellow') && playerTwoColor === 'blue') {
-		currentPositionP2.classList.replace('player-one-yellow', 'player-two-blue');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	} else if (currentPositionP2.classList.contains('player-one-green') && playerTwoColor === 'blue') {
-		currentPositionP2.classList.replace('player-one-green', 'player-two-blue');
-		pointsP2 += 1;
-		pointsP1 -= 1;
-	}
-	if (playerTwoColor === 'blue' && !currentPositionP2.classList.contains('player-two-blue')) {
-		currentPositionP2.classList.add('player-two-blue');
-		pointsP2 += 1;
-	}
-
-	countPoints();
-}
-
-function countPoints() {
-	var displayPointsP1 = document.getElementById('player-one-points');
-	displayPointsP1.textContent = pointsP1;
-
-	var displayPointsP2 = document.getElementById('player-two-points');
-	displayPointsP2.textContent = pointsP2;
-}
-
-function getRandomInt(min, max) {
-	return Math.floor(Math.random(min) * Math.floor(max));
-}
-
-function createMeterorites() {
-	var randomCell1 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	if (randomCell1 != currentPositionP1 && randomCell1 != currentPositionP2) {
-		randomCell1.classList.add('meteorite', 'taken');
-	}
-	var randomCell2 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	if (randomCell2 != currentPositionP1 && randomCell2 != currentPositionP2) {
-		randomCell2.classList.add('meteorite', 'taken');
-	}
-
-	window.setInterval(function() {
-		setTimeout(function() {
-			var randomCell3 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-			if (randomCell3 != currentPositionP1 && randomCell3 != currentPositionP2) {
-				randomCell3.classList.add('meteorite', 'taken');
-			}
-		}, 5000);
-		clearInterval(window);
-	}, 4000);
+	displayPoints();
 }
 
 function determineWinner() {
-	player1 = 'Player 1';
-	player2 = 'Player 2';
-	equality = 'equality';
-	winner = null;
-
-	// NOM DU GAGNANT EN FONCTION DES POINTS
-	var pointsP1 = document.getElementById('player-one-points');
-	var pointsP2 = document.getElementById('player-two-points');
-
-	if (pointsP1.innerHTML > pointsP2.innerHTML) winner = player1;
-	if (pointsP1.innerHTML < pointsP2.innerHTML) winner = player2;
-	if (pointsP1.innerHTML === pointsP2.innerHTML) winner = equality;
-	winnerImage = document.getElementById('dino-winner');
-
-	// PAGES A CACHER/AFFICHER
 	main.classList.add('hidden');
-
 	endScreen.classList.remove('hidden');
-
-	var endText = document.getElementById('end-text');
 	endText.classList.remove('hidden');
-
-	var buttonPlayAgain = document.getElementById('play-again');
 	buttonPlayAgain.classList.remove('hidden');
-
 	winnerImage.classList.remove('hidden');
-
-	if (winner === player1) {
-		if (playerOneColor === 'red') {
-			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'yellow') {
-			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'green') {
-			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerOneColor === 'blue') {
-			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
-		}
+	if (playerOne.points > playerTwo.points) {
+		winnerImage.innerHTML = `<img src='./images/${playerOne.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 1, you win! You're the most ferocious dino out there.";
-	} else if (winner === player2) {
-		if (playerTwoColor === 'red') {
-			winnerImage.innerHTML = "<img src='./images/red_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'yellow') {
-			winnerImage.innerHTML = "<img src='./images/yellow_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'green') {
-			winnerImage.innerHTML = "<img src='./images/green_dino_short.gif' alt='dino-winner'>";
-		} else if (playerTwoColor === 'blue') {
-			winnerImage.innerHTML = "<img src='./images/blue_dino_short.gif' alt='dino-winner'>";
-		}
+	} else if (playerOne.points < playerTwo.points) {
+		winnerImage.innerHTML = `<img src='./images/${playerTwo.color}_dino_short.gif' alt='dino-winner'>`;
 		endText.innerHTML = "Player 2, you win! You're the most ferocious dino out there.";
-	} else if (winner === equality) {
-		winnerImage.innerHTML =
-			"<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
-		endText.innerHTML = 'Dinosaurs can be diplomats, too. You have found a way to share your territory peacefully.';
+	} else {
+		winnerImage.innerHTML = "<img src='./images/red_dino_running.gif' alt='red dino'><img src='./images/yellow_dino_running.gif' alt='yellow dino'><img src='./images/green_dino_running.gif' alt='green dino'><img src='./images/blue_dino_running.gif' alt='blue dino'>";
+		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';	
 	}
-	buttonPlayAgain.onclick = function restart() {
-		location.reload();
-	};
 }
-
-// DISPLAY INSTRUCTIONS
-var buttonInstructions = document.getElementById('instruction');
-buttonInstructions.onclick = function displayInstruction() {
-	var instructions = document.getElementById('instructions');
-	instructions.classList.remove('hidden');
-
-	startScreen.classList.add('hidden');
-
-	var buttonMenu = document.getElementById("menu");
-	buttonMenu.onclick = function restart() {
-		location.reload();
-	};
-};

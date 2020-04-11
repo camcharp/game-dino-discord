@@ -1,102 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <title>Dino Discord</title>
-</head>
-<body>
-
-    <!----- START SCREEN ----->
-    <div id="start-screen">
-        <h1 id="title">Dino Discord</h1>
-        <p id="intro">One land. Two dinosaurs.</br> Your mission? To conquer the most territory.</br> But beware of meteorites. </p>
-        <img src="./images/red_dino_running.gif" alt="red dino">
-        <img src="./images/yellow_dino_running.gif" alt="yellow dino">
-        <img src="./images/green_dino_running.gif" alt="green dino">
-        <img src="./images/blue_dino_running.gif" alt="blue dino">
-        <nav id="navigation">
-            <button class="button-nav" id="play">PLAY</button>
-            <button class="button-nav" id="instruction">INSTRUCTIONS</button>  
-        </nav>
-    </div>
-    <!----- START SCREEN ----->
-
-    <!----- BOARD GAME ----->
-    <div id="main" class="hidden">
-
-        <div class="header-container">
-            <p id="seconds" class="hidden">3</p>
-            <p id="ready" class="hidden">Ready?</p>
-            <p  class="hidden" id="countdown-text"><span id="countdown">31</span> seconds left</p>
-            <button class="button hidden" id="start">START</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./styles/styles.css">
+        <title>Dino Discord</title>
+    </head>
+    <body>
+        <!----- START SCREEN ----->
+        <div id="start-screen">
+            <h1 id="title">Dino Discord</h1>
+            <p id="intro">One land. Two dinosaurs.</br> Your mission is to conquer the most territory.</br> But beware of meteorites. </p>
+            <img src="./images/red_dino_running.gif" alt="red dino">
+            <img src="./images/yellow_dino_running.gif" alt="yellow dino">
+            <img src="./images/green_dino_running.gif" alt="green dino">
+            <img src="./images/blue_dino_running.gif" alt="blue dino">
+            <nav id="navigation">
+                <button class="button-nav" id="play">PLAY</button>
+                <button class="button-nav" id="instruction" onclick="displayInstruction()">INSTRUCTIONS</button>  
+            </nav>
         </div>
-        <div class="container">
-            <div id="dino-display-one">
+        <!----- START SCREEN ----->
+        <!----- BOARD GAME ----->
+        <div id="main" class="hidden">
+            <div class="header-container">
+                <p id="seconds" class="hidden">3</p>
+                <p id="ready" class="hidden">Ready?</p>
+                <p  class="hidden" id="countdown-text"><span id="countdown">31</span> seconds left</p>
+                <button class="button hidden" id="start">START</button>
+            </div>
+            <div class="container">
+                <div id="dino-display-one">
                     <p class="choose">Click to choose your dino</p>
-                    <img src="./images/red_dino_short.gif" class="dino-color red" id="red-one" alt="red-dino">
-                    <img src="./images/yellow_dino_short.gif" class="dino-color yellow" id='yellow-one' alt="yellow">
-                    <img src="./images/green_dino_short.gif" class="dino-color green" id='green-one' alt="green-dino">
-                    <img src="./images/blue_dino_short.gif" class="dino-color blue" id='blue-one' alt="blue-dino">
-            </div>
-
-            <div class="player-display hidden">
-                <h2 id="player-one-text" class="hidden">Player 1</h2>
-                <p id="player-one-text-points" class="hidden"><span id="player-one-points">0</span> points</p>
-                <div id="dino-one-image" class="hidden"> </div>
-            </div>
-            
-            <div id="game-board">
-
-
-            </div>
-
-            <div class="player-display hidden">
+                    <img src="./images/red_dino_short.gif" class="dino-1 dino-color red" data-color="red" id="red-one" alt="red-dino">
+                    <img src="./images/yellow_dino_short.gif" class="dino-1 dino-color yellow" data-color="yellow" id='yellow-one' alt="yellow">
+                    <img src="./images/green_dino_short.gif" class="dino-1 dino-color green" data-color="green" id='green-one' alt="green-dino">
+                    <img src="./images/blue_dino_short.gif" class="dino-1 dino-color blue" data-color="blue" id='blue-one' alt="blue-dino">
+                </div>
+                <div class="player-display hidden">
+                    <h2 id="player-one-text" class="hidden">Player 1</h2>
+                    <p id="player-one-text-points" class="hidden"><span id="player-one-points">1</span> points</p>
+                    <div id="dino-one-image" class="hidden"> </div>
+                </div>
+                <div id="game-board">
+                </div>
+                <div class="player-display hidden">
                     <h2 id="player-two-text" class="hidden">Player 2</h2>
-                    <p id="player-two-text-points" class="hidden"><span id="player-two-points">0</span> points</p>
+                    <p id="player-two-text-points" class="hidden"><span id="player-two-points">1</span> points</p>
                     <div id="dino-two-image" class="hidden"> </div>
+                </div>
+                <div id="dino-display-two">
+                    <p class="choose">Click to choose your dino</p>
+                    <img src="./images/red_dino_short_left.gif" class="dino-2 dino-color red" data-color="red" id='red-two' alt="red-dino">
+                    <img src="./images/yellow_dino_short_left.gif" class="dino-2 dino-color yellow" data-color="yellow" id='yellow-two' alt="yellow">
+                    <img src="./images/green_dino_short_left.gif" class="dino-2 dino-color green" data-color="green" id='green-two' alt="green-dino">
+                    <img src="./images/blue_dino_short_left.gif" class="dino-2 dino-color blue" data-color="blue" id='blue-two' alt="blue-dino">
+                </div>
+                
             </div>
-
-            <div id="dino-display-two">
-                <p class="choose">Click to choose your dino</p>
-                <img src="./images/red_dino_short_left.gif" class="dino-color red" id='red-two' alt="red-dino">
-                <img src="./images/yellow_dino_short_left.gif" class="dino-color yellow" id='yellow-two' alt="yellow">
-                <img src="./images/green_dino_short_left.gif" class="dino-color green" id='green-two' alt="green-dino">
-                <img src="./images/blue_dino_short_left.gif" class="dino-color blue" id='blue-two' alt"blue-dino">
+        </div>  
+        <!----- BOARD GAME ----->
+        <!----- END SCREEN ----->
+        <div id="end-screen" class="hidden">
+            <p id="end-text" class="hidden"></p>
+            <div id="dino-winner" class="hidden"> </div>
+            <button id="play-again" class="button-end hidden" onclick="restart()">PLAY AGAIN</button>
+        </div>
+        <!----- END SCREEN ----->
+        <!----- INSTRUCTIONS ----->
+        <div id="instructions" class="hidden">
+            <p>You have to conquer more territory than your opponent. Move on the board to gain points. One cell with your color = one point for you. You can totally steal the cells of the other dino!</p>
+            <div id="commands">
+                <p>Player One, press Z to go up, S to go down, Q to go left and D to go right.</p>
+                <p>Player Two, press Up to go up, Down to go down, Left to go left and Right to go right.</p>
             </div>
-
+            <p id="credits">made with love by Cam </br>
+                © icons: <a href="https://arks.itch.io/dino-characters">Arks</a>
+            </p>
+            <button id="menu" onclick="restart()">MENU</button>
         </div>
-</div>  
-    <!----- BOARD GAME ----->
-
-    <!----- END SCREEN ----->
-    <div id="end-screen" class="hidden">
-        <p id="end-text" class="hidden"></p>
-        <div id="dino-winner" class="hidden"> </div>
-        <button id="play-again" class="button-end hidden">PLAY AGAIN</button>
-    </div>
-    <!----- END SCREEN ----->
-
-    <!----- INSTRUCTIONS ----->
-    <div id="instructions" class="hidden">
-        <p>You have to conquer more territory than your opponent. One cell with your color = one point for you. You can totally steal the cells of the other dino!</p>
-        <div id="commands">
-            <p>Player One, press Z to go up, S to go down, Q to go left and D to go right.</p>
-            <p>Player Two, press Up to go up, Down to go down, Left to go left and Right to go right.</p>
-        </div>
-        <p id="credits">Game: camcharp
-            Icons: Arks
-            Music: 8 Bit Universe
-        </p>
-        
-        <button id="menu">MENU</button>
-    </div>
-    <!----- INSTRUCTIONS ----->
-
-</body>
-<script src="./board.js"></script>
-<script src="./game.js" ></script>
+        <!----- INSTRUCTIONS ----->
+    </body>
+    <script src="./elements.js"></script> 
+    <script src="./board.js"></script>
+    <script src="./game.js" ></script>
 </html>

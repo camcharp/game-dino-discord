@@ -6,9 +6,11 @@ class Board {
 
 class Player {
 	constructor(x, y, points, playerNumber) {
+		this.playerNumber = playerNumber
 		this.x = x;
 		this.y = y;
 		this.points = points;
+		this.color = null;
 		/* 		this.movements = playerMovements[playerNumber]; 
 		console.log(this.movements);*/
 	}
