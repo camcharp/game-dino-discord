@@ -1,10 +1,4 @@
-/* jaune: rgb(236,171,39)
-vert: rgb(126,166,63)
-red: rgb(201,56,71)
-blue: rgb(60,146,191)*/
-
 /* GENERAL */
-
 body.noScroll {
 	overflow: hidden;
 }
@@ -32,7 +26,6 @@ audio {
 }
 
 /* START SCREEN */
-
 #start-screen,
 #end-screen, #instructions {
 	background-color: rgb(0, 0, 0, 0.7);
@@ -80,7 +73,6 @@ audio {
 }
 
 /* MAIN BOARD GAME */
-
 h1 {
 	background: black;
 }
@@ -183,26 +175,6 @@ img {
 	box-sizing: border-box;
 	height: 50px;
 	width: 50px;
-}
-
-.player-one {
-	background-color: rgb(126, 166, 63);
-}
-
-.player-two {
-	background-color: rgb(236, 171, 39);
-}
-
-.active-player-one {
-	background-image: url(../images/green_dino_small.gif);
-}
-
-/* .active-player-one-left {
-	background-image: url(./green_dino_small_left.gif)
-} */
-
-.active-player-two {
-	background-image: url(../images/yellow_dino_small_left.gif);
 }
 
 .button {
@@ -314,69 +286,51 @@ button:focus {
 	font-size: 0.5em;
 }
 
-/* COULEURS */
-
-.player-one-red {
+.player-one-red, .player-two-red {
 	background-color: rgb(201, 56, 71);
 }
 
-.player-one-yellow {
+.player-one-yellow, .player-two-yellow {
 	background-color: rgb(236, 171, 39);
 }
 
-.player-one-green {
+.player-one-green, .player-two-green {
 	background-color: rgb(126, 166, 63);
 }
 
-.player-one-blue {
+.player-one-blue, .player-two-blue {
 	background-color: rgb(60, 146, 191);
 }
 
-.player-two-red {
-	background-color: rgb(201, 56, 71);
-}
-
-.player-two-yellow {
-	background-color: rgb(236, 171, 39);
-}
-
-.player-two-green {
-	background-color: rgb(126, 166, 63);
-}
-
-.player-two-blue {
-	background-color: rgb(60, 146, 191);
-}
-
-.active-player-one-red {
+.active-player-one-red, .active-player-two-red-right {
 	background-image: url(../images/red_dino_small.gif);
 }
 
-.active-player-one-yellow {
+.active-player-one-yellow, .active-player-two-yellow-right {
 	background-image: url(../images/yellow_dino_small.gif);
 }
 
-.active-player-one-green {
+.active-player-one-green, .active-player-two-green-right {
 	background-image: url(../images/green_dino_small.gif);
 }
 
-.active-player-one-blue {
+.active-player-one-blue, .active-player-two-blue-right {
 	background-image: url(../images/blue_dino_small.gif);
 }
 
-.active-player-two-red {
+.active-player-two-red, .active-player-one-red-left {
 	background-image: url(../images/red_dino_small_left.gif);
 }
 
-.active-player-two-yellow {
+.active-player-two-yellow, .active-player-one-yellow-left {
 	background-image: url(../images/yellow_dino_small_left.gif);
 }
 
-.active-player-two-green {
+.active-player-two-green, .active-player-one-green-left {
 	background-image: url(../images/green_dino_small_left.gif);
 }
 
-.active-player-two-blue {
+.active-player-two-blue, .active-player-one-blue-left {
 	background-image: url(../images/blue_dino_small_left.gif);
 }
 

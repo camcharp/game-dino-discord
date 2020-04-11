@@ -1,4 +1,3 @@
-
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
@@ -74,6 +73,7 @@ function chooseColor() {
 		positionPlayerOne.classList.add(`player-one-${color}`, `active-player-one-${color}`, `taken`);
 		playerOneColorCell = `${color}`;
 		playerOne.color = `${color}`;
+		playerOne.activeClass = `active-player-one-${playerOne.color}`;
 		image1.innerHTML = `<img src="./images/${color}_dino_short.gif" alt"dino-${color}">`;
 	}
 
@@ -81,13 +81,13 @@ function chooseColor() {
 		positionPlayerTwo.classList.add(`player-two-${color}`, `active-player-two-${color}`, `taken`);
 		playerTwoColorCell = `${color}`;
 		playerTwo.color = `${color}`;
+		playerTwo.activeClass = `active-player-two-${playerTwo.color}-right`;
 		image2.innerHTML = `<img src="./images/${color}_dino_short_left.gif" alt"dino-${color}">`;
 	}
 
 	for (const dino of dinos1) {
 		dino.addEventListener('click', function() {
 			setPlayerOne(`${dino.dataset.color}`);
-			playerOne.color = `${dino.dataset.color}`;
 			removeColorChoose1();
 		})
 	}
@@ -111,7 +111,6 @@ function chooseColor() {
 	for (const dino of dinos2) {
 		dino.addEventListener('click', function() {
 			setPlayerTwo(`${dino.dataset.color}`);
-			playerTwo.color = `${dino.dataset.color}`;
 			removeColorChoose2();
 		})
 	}
@@ -199,10 +198,10 @@ function createMeterorites() {
 
 function move(event) {
 	var oldPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
-	oldPositionP1.classList.remove(`active-player-one-${playerOne.color}`,'taken');
+	oldPositionP1.classList.remove(`active-player-one-${playerOne.color}`,`active-player-one-${playerOne.color}-left`,'taken');
 
 	var oldPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
-	oldPositionP2.classList.remove(`active-player-two-${playerTwo.color}`,'taken');
+	oldPositionP2.classList.remove(`active-player-two-${playerTwo.color}`,`active-player-two-${playerTwo.color}-right`,'taken');
 
 	var leftP1 = document.getElementById(`${playerOne.x}-${playerOne.y - 1}`);
 	var topP1 = document.getElementById(`${playerOne.x - 1}-${playerOne.y}`);
@@ -214,69 +213,29 @@ function move(event) {
 	var rightP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y + 1}`);
 	var bottomP2 = document.getElementById(`${playerTwo.x + 1}-${playerTwo.y}`);
 
-	cell = document.querySelectorAll('.cell');
-
-	//left
-	if (event.keyCode === 81 && playerOne.y > 0) {
-		if (
-			`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y - 1}` &&
-			!leftP1.classList.contains('meteorite')
-		) {
-			playerOne.y -= 1;
-		}
-	} else if (event.keyCode === 90 && playerOne.x > 0) {
-		//top
-		if (
-			`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x - 1}-${playerOne.y}` &&
-			!topP1.classList.contains('meteorite')
-		)
-			playerOne.x -= 1;
-	} else if (event.keyCode === 68 && playerOne.y < 9) {
-		//right
-		if (
-			`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y + 1}` &&
-			!rightP1.classList.contains('meteorite')
-		)
-			playerOne.y += 1;
-	} else if (event.keyCode === 83 && playerOne.x < 9) {
-		//bottom
-		if (
-			`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x + 1}-${playerOne.y}` &&
-			!bottomP1.classList.contains('meteorite')
-		)
-			playerOne.x += 1;
+	if (event.keyCode === 81 && playerOne.y > 0) { //left
+		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y - 1}` && !leftP1.classList.contains('meteorite')) playerOne.y -= 1;
+		playerOne.activeClass = `active-player-one-${playerOne.color}-left`;
+	} else if (event.keyCode === 90 && playerOne.x > 0) { //top
+		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x - 1}-${playerOne.y}` && !topP1.classList.contains('meteorite')) playerOne.x -= 1;
+	} else if (event.keyCode === 68 && playerOne.y < 9) { //right
+		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y + 1}` && !rightP1.classList.contains('meteorite')) playerOne.y += 1;
+		playerOne.activeClass = `active-player-one-${playerOne.color}`
+	} else if (event.keyCode === 83 && playerOne.x < 9) { //bottom
+		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x + 1}-${playerOne.y}` && !bottomP1.classList.contains('meteorite')) playerOne.x += 1;
 	}
 
-	// left
-	if (event.keyCode === 37 && playerTwo.y > 0) {
-		if (
-			`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y - 1}` &&
-			!leftP2.classList.contains('meteorite')
-		)
-			playerTwo.y -= 1;
-	} else if (event.keyCode === 38 && playerTwo.x > 0) {
-		//top
-		if (
-			`${playerOne.x}-${playerOne.y}` != `${playerTwo.x - 1}-${playerTwo.y}` &&
-			!topP2.classList.contains('meteorite')
-		)
-			playerTwo.x -= 1;
-	} else if (event.keyCode === 39 && playerTwo.y < 9) {
-		//right
-		if (
-			`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y + 1}` &&
-			!rightP2.classList.contains('meteorite')
-		)
-			playerTwo.y += 1;
-	} else if (event.keyCode === 40 && playerTwo.x < 9) {
-		//bottom
-		if (
-			`${playerOne.x}-${playerOne.y}` != `${playerTwo.x + 1}-${playerTwo.y}` &&
-			!bottomP2.classList.contains('meteorite')
-		)
-			playerTwo.x += 1;
+	if (event.keyCode === 37 && playerTwo.y > 0) { // left
+		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y - 1}` && !leftP2.classList.contains('meteorite')) playerTwo.y -= 1;
+		playerTwo.activeClass = `active-player-two-${playerTwo.color}`;
+	} else if (event.keyCode === 38 && playerTwo.x > 0) { //top
+		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x - 1}-${playerTwo.y}` && !topP2.classList.contains('meteorite')) playerTwo.x -= 1;
+	} else if (event.keyCode === 39 && playerTwo.y < 9) { //right
+		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y + 1}` && !rightP2.classList.contains('meteorite')) playerTwo.y += 1;
+		playerTwo.activeClass = `active-player-two-${playerTwo.color}-right`;
+	} else if (event.keyCode === 40 && playerTwo.x < 9) { //bottom
+		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x + 1}-${playerTwo.y}` && !bottomP2.classList.contains('meteorite')) playerTwo.x += 1;
 	}
-
 	color();
 }
 
@@ -289,8 +248,8 @@ function color() {
 	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-	currentPositionP1.classList.add(`active-player-one-${playerOne.color}`, 'taken');
-	currentPositionP2.classList.add(`active-player-two-${playerTwo.color}`, 'taken');
+	currentPositionP1.classList.add(`${playerOne.activeClass}`, 'taken');
+	currentPositionP2.classList.add(`${playerTwo.activeClass}`, 'taken');
 
 	if (currentPositionP1.classList.contains(`player-two-${playerTwo.color}`)) {
 		currentPositionP1.classList.replace(`player-two-${playerTwo.color}`, `player-one-${playerOne.color}`);
