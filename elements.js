@@ -2,6 +2,7 @@
 const startScreen = document.getElementById('start-screen');
 const startButton = document.getElementById('start');
 var buttonMenu = document.getElementById("menu");
+var buttonPlay = document.getElementById('play');
 
 // BOARD
 const main = document.getElementById('main');

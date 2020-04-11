@@ -5,9 +5,6 @@ init(playerOne, playerTwo);
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-// var playerOneColor = null;
-// var playerTwo.color = null;
-
 startButton.onclick = function startGame() {
 	createMeterorites();
 
@@ -16,8 +13,7 @@ startButton.onclick = function startGame() {
 	countdown.classList.remove('hidden');
 	seconds.classList.remove('hidden');
 
-	// compte à rebours avant le début du jeu
-	var x = setInterval(function() {
+	var x = setInterval(function() { 	// compte à rebours avant le début du jeu
 		var seconds = document.getElementById('seconds');
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
@@ -52,14 +48,9 @@ startButton.onclick = function startGame() {
 	}, 3000);
 };
 
-var buttonPlay = document.getElementById('play');
 buttonPlay.onclick = function() {
-	var main = document.getElementById('main');
 	main.classList.remove('hidden');
-
-	var startScreen = document.getElementById('start-screen');
 	startScreen.classList.add('hidden');
-
 	chooseColor();
 };
 
@@ -322,22 +313,20 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random(min) * Math.floor(max));
 }
 
-function createMeterorites() {
-	var randomCell1 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	if (randomCell1 != currentPositionP1 && randomCell1 != currentPositionP2) {
-		randomCell1.classList.add('meteorite', 'taken');
+function placeMeteorite(){
+	var randomCell = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
+	if (randomCell != currentPositionP1 && randomCell != currentPositionP2) {
+		randomCell.classList.add('meteorite', 'taken');
 	}
-	var randomCell2 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-	if (randomCell2 != currentPositionP1 && randomCell2 != currentPositionP2) {
-		randomCell2.classList.add('meteorite', 'taken');
-	}
+}
 
-	window.setInterval(function() {
+function createMeterorites() {
+	for (i = 1; i < 3; i++) { // meteorites at the beginning of the game
+		placeMeteorite();
+	}
+	window.setInterval(function() { // random meteorites during the game
 		setTimeout(function() {
-			var randomCell3 = document.getElementById(`${getRandomInt(0, 10)}-${getRandomInt(0, 10)}`);
-			if (randomCell3 != currentPositionP1 && randomCell3 != currentPositionP2) {
-				randomCell3.classList.add('meteorite', 'taken');
-			}
+			placeMeteorite();
 		}, 5000);
 		clearInterval(window);
 	}, 4000);
