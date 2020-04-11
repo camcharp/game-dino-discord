@@ -3,6 +3,8 @@ const restart = () => location.reload()
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
+const getRandomInt = (min, max) => Math.floor(Math.random(min) * Math.floor(max));
+
 function init() {
 	for (let i = 0; i < boardGame.size; i++) {
 		for (let j = 0; j < boardGame.size; j++) {
@@ -17,7 +19,6 @@ init(); // let's create the board
 
 startButton.onclick = function startGame() {
 	createMeterorites();
-
 	startButton.classList.add('hidden');
 	ready.classList.add('hidden');
 	countdown.classList.remove('hidden');
@@ -271,6 +272,11 @@ function move(event) {
 	color(playerOne.color,playerTwo.color);
 }
 
+function displayPoints() {
+	document.getElementById('player-one-points').textContent = playerOne.points;
+	document.getElementById('player-two-points').textContent = playerTwo.points;
+}
+
 function color(colorP1, colorP2) {
 	var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 	var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
@@ -295,17 +301,7 @@ function color(colorP1, colorP2) {
 		currentPositionP2.classList.add(`player-two-${playerTwo.color}`);
 		playerTwo.points += 1;
 	}
-
-	countPoints();
-}
-
-function countPoints() {
-	document.getElementById('player-one-points').textContent = playerOne.points;
-	document.getElementById('player-two-points').textContent = playerTwo.points;
-}
-
-function getRandomInt(min, max) {
-	return Math.floor(Math.random(min) * Math.floor(max));
+	displayPoints();
 }
 
 function placeMeteorite(){
