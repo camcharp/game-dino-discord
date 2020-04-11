@@ -1,12 +1,18 @@
 var currentPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
 var currentPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
 
-const restart = () => location.reload()
+const playAudio = (sound) => new Audio(sound).play();
+const restart = () => location.reload();
 const getRandomInt = (min, max) => Math.floor(Math.random(min) * Math.floor(max));
 const displayInstruction = () => {
 	instructions.classList.remove('hidden');
 	startScreen.classList.add('hidden');
 };
+
+buttonInstructions.onclick = () => {
+	displayInstruction();
+	playAudio('./music/bip.wav');
+}
 
 function init() {
 	for (let i = 0; i < boardGame.size; i++) {
@@ -21,6 +27,7 @@ function init() {
 init(); // let's create the board
 
 startButton.onclick = function startGame() {
+	playAudio('./music/bip.wav');
 	createMeterorites();
 	startButton.classList.add('hidden');
 	ready.classList.add('hidden');
@@ -31,8 +38,6 @@ startButton.onclick = function startGame() {
 		var seconds = document.getElementById('seconds');
 		seconds.textContent -= 1;
 		if (seconds.textContent == 0) {
-			// var audio = new Audio('./mix.mp3');
-			// audio.play();
 			seconds.innerHTML = 'Go go go!';
 			setTimeout(function() {
 				seconds.innerHTML = '';
@@ -62,6 +67,7 @@ startButton.onclick = function startGame() {
 buttonPlay.onclick = function() {
 	main.classList.remove('hidden');
 	startScreen.classList.add('hidden');
+	playAudio('./music/bip.wav');
 	chooseColor();
 };
 
@@ -87,6 +93,7 @@ function chooseColor() {
 
 	for (const dino of dinos1) {
 		dino.addEventListener('click', function() {
+			playAudio('./music/bip.wav');
 			setPlayerOne(`${dino.dataset.color}`);
 			removeColorChoose1();
 		})
@@ -110,6 +117,7 @@ function chooseColor() {
 
 	for (const dino of dinos2) {
 		dino.addEventListener('click', function() {
+			playAudio('./music/bip.wav');
 			setPlayerTwo(`${dino.dataset.color}`);
 			removeColorChoose2();
 		})
@@ -214,26 +222,35 @@ function move(event) {
 	var bottomP2 = document.getElementById(`${playerTwo.x + 1}-${playerTwo.y}`);
 
 	if (event.keyCode === 81 && playerOne.y > 0) { //left
+		playAudio('./music/move.wav');
 		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y - 1}` && !leftP1.classList.contains('meteorite')) playerOne.y -= 1;
 		playerOne.activeClass = `active-player-one-${playerOne.color}-left`;
 	} else if (event.keyCode === 90 && playerOne.x > 0) { //top
+		playAudio('./music/move.wav');
 		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x - 1}-${playerOne.y}` && !topP1.classList.contains('meteorite')) playerOne.x -= 1;
+		playAudio('./music/move.wav');
 	} else if (event.keyCode === 68 && playerOne.y < 9) { //right
+		playAudio('./music/move.wav');
 		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x}-${playerOne.y + 1}` && !rightP1.classList.contains('meteorite')) playerOne.y += 1;
 		playerOne.activeClass = `active-player-one-${playerOne.color}`
 	} else if (event.keyCode === 83 && playerOne.x < 9) { //bottom
+		playAudio('./music/move.wav');
 		if (`${playerTwo.x}-${playerTwo.y}` != `${playerOne.x + 1}-${playerOne.y}` && !bottomP1.classList.contains('meteorite')) playerOne.x += 1;
 	}
 
 	if (event.keyCode === 37 && playerTwo.y > 0) { // left
+		playAudio('./music/move.wav');
 		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y - 1}` && !leftP2.classList.contains('meteorite')) playerTwo.y -= 1;
 		playerTwo.activeClass = `active-player-two-${playerTwo.color}`;
 	} else if (event.keyCode === 38 && playerTwo.x > 0) { //top
+		playAudio('./music/move.wav');
 		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x - 1}-${playerTwo.y}` && !topP2.classList.contains('meteorite')) playerTwo.x -= 1;
 	} else if (event.keyCode === 39 && playerTwo.y < 9) { //right
+		playAudio('./music/move.wav');
 		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x}-${playerTwo.y + 1}` && !rightP2.classList.contains('meteorite')) playerTwo.y += 1;
 		playerTwo.activeClass = `active-player-two-${playerTwo.color}-right`;
 	} else if (event.keyCode === 40 && playerTwo.x < 9) { //bottom
+		playAudio('./music/move.wav');
 		if (`${playerOne.x}-${playerOne.y}` != `${playerTwo.x + 1}-${playerTwo.y}` && !bottomP2.classList.contains('meteorite')) playerTwo.x += 1;
 	}
 	color();
@@ -288,3 +305,10 @@ function determineWinner() {
 		endText.innerHTML = 'Dinosaurs can be diplomats too. You have found a way to share your territory peacefully.';	
 	}
 }
+
+buttonPlayAgain.onclick = () => {
+	restart();
+	playAudio('./music/bip.wav');
+}
+
+buttonMenu.onclick = () => restart();
