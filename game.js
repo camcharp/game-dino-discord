@@ -56,10 +56,7 @@ startButton.onclick = function startGame() {
 				}, 4000);
 			}
 		}, 1000);
-
 		document.addEventListener('keyup', move);
-		{
-		}
 	}, 3000);
 };
 
@@ -202,22 +199,10 @@ function createMeterorites() {
 
 function move(event) {
 	var oldPositionP1 = document.getElementById(`${playerOne.x}-${playerOne.y}`);
-	oldPositionP1.classList.remove(
-		'active-player-one-red',
-		'active-player-one-yellow',
-		'active-player-one-green',
-		'active-player-one-blue',
-		'taken'
-	);
+	oldPositionP1.classList.remove(`active-player-one-${playerOne.color}`,'taken');
 
 	var oldPositionP2 = document.getElementById(`${playerTwo.x}-${playerTwo.y}`);
-	oldPositionP2.classList.remove(
-		'active-player-two-red',
-		'active-player-two-yellow',
-		'active-player-two-green',
-		'active-player-two-blue',
-		'taken'
-	);
+	oldPositionP2.classList.remove(`active-player-two-${playerTwo.color}`,'taken');
 
 	var leftP1 = document.getElementById(`${playerOne.x}-${playerOne.y - 1}`);
 	var topP1 = document.getElementById(`${playerOne.x - 1}-${playerOne.y}`);
